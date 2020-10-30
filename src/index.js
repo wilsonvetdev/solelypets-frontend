@@ -6,29 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import animalShelterReducer from './reducers/AnimalShelterReducer'
 
-let initialStateOfDonationReducer = {
-  donations: []
-}
-
-const donationReducer = (state = initialStateOfDonationReducer, action) => {
-  switch(action.type) {
-    // case 'ADD_DONATION':
-    //   break
-    default:
-      return state
-  }
-}
-
-let store = createStore(donationReducer, 
+let store = createStore(animalShelterReducer, 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <App />
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
