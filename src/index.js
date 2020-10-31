@@ -3,12 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux'
+import 'semantic-ui-css/semantic.min.css'
+import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import animalShelterReducer from './reducers/AnimalShelterReducer'
+import userReducer from './reducers/UserReducer'
+import donationReducer from './reducers/DonationReducer'
 
-let store = createStore(animalShelterReducer, 
+let reducerPojo = {
+  animalSheltersInfo: animalShelterReducer,
+  userInfo: userReducer
+}
+
+let rootReducer = combineReducers(reducerPojo)
+
+let store = createStore(rootReducer, 
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
