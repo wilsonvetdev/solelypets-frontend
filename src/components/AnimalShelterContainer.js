@@ -24,7 +24,7 @@ function AnimalShelterContainer(props) {
 
 const mapStateToProps = state => {
     return {
-        animalShelters: state.animalShelters
+        animalShelters: state.animalSheltersInfo.animalShelters
     }
 }
 

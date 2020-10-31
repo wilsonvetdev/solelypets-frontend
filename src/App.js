@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { Link, Switch, Route } from 'react-router-dom'
 import AnimalShelterContainer from './components/AnimalShelterContainer'
 import { setAnimalShelters } from './actions/animalShelters'
+import { setUserInfo } from './actions/users'
 import AnimalShelter from './components/AnimalShelter'
+import LoginForm from './components/LoginForm'
 
 class App extends React.Component {
 
@@ -13,6 +15,21 @@ class App extends React.Component {
     .then(sheltersArray => {
       this.props.setAnimalShelters(sheltersArray)
     })
+
+    if(localStorage.token){
+      fetch('http://localhost:3000/keep_logged_in', {
+        method: 'GET',
+        headers: {
+          'Authorization': localStorage.token
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        if(response.token){
+          this.props.setUserInfo(response)
+        }
+      })
+    }
   }
 
   singleShelter = (routerProps) => {
@@ -31,15 +48,18 @@ class App extends React.Component {
     return(
       <div>
         <h1>SolelyPets</h1>
-        <Link to='/'>Home Page</Link>
-        <Link to='/animal_shelters'>All Animal Shelters</Link>
+        <ul>
+        <li><Link to='/'>Home Page</Link></li>
+        <li><Link to='/animal_shelters'>All Animal Shelters</Link></li>
+        <li><Link to='/login'>Log In</Link></li>
+        </ul>
 
         <Switch>
           <Route path='/animal_shelters' exact>
             <AnimalShelterContainer />
           </Route>
-
           <Route path='/animal_shelters/:id' render={this.singleShelter} />
+          <Route path='/login' component={LoginForm} />
         </Switch>
 
       </div>
@@ -49,12 +69,15 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    animalShelters: state.animalShelters
+    animalShelters: state.animalSheltersInfo.animalShelters
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return { setAnimalShelters: (sheltersArray) => dispatch(setAnimalShelters(sheltersArray)) }
+const mapDispatchToProps = dispatch => {
+  return { 
+    setAnimalShelters: (sheltersArray) => dispatch(setAnimalShelters(sheltersArray)),
+    setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)) 
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
