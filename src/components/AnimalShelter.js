@@ -3,7 +3,7 @@ import React from 'react'
 function AnimalShelter(props){
 
     let { name, address, city, state, email  } = props.shelter
-
+    console.log(props)
     return(
         <div>
             <h2>Shelter Name: {name}</h2>

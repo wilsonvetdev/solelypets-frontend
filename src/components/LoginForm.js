@@ -1,11 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
+import { setUserInfo } from '../actions/users'
+
 
 class LoginForm extends React.Component {
 
     state = {
-        firstName: '',
-        lastName: '',
         email: '',
         password: ''
     }
@@ -18,27 +20,29 @@ class LoginForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        
-    
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: this.state.email, 
+                password: this.state.password
+            })
+        })
+        .then(response => response.json())
+        .then(userInfo => {
+            this.props.setUserInfo(userInfo)
+            localStorage.token = userInfo.token
+            this.props.history.push('/animal_shelters')
+        })
     }
 
     render(){
-        const { firstName, lastName, email, password } = this.state
+        const { email, password } = this.state
         return(
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
-                <Form.Input
-                    placeholder='First Name'
-                    name='firstName'
-                    value={firstName}
-                    onChange={this.handleChange}
-                />
-                <Form.Input
-                    placeholder='Last Name'
-                    name='lastName'
-                    value={lastName}
-                    onChange={this.handleChange}
-                />
                 <Form.Input
                     placeholder='Email'
                     name='email'
@@ -58,4 +62,8 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm
+const mapDispatchToProps = dispatch => {
+    return { setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)) }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(LoginForm))
