@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, Header, Modal } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
+import DonationForm from './DonationForm'
 
 class AnimalShelter extends React.Component{
 
@@ -23,25 +24,13 @@ class AnimalShelter extends React.Component{
                     <Modal.Header>Input Card Info</Modal.Header>
                     <Modal.Content>
                         <Modal.Description>
-                        <Header>Default Profile Image</Header>
-                        <p>
-                            We've found the following gravatar image associated with your e-mail
-                            address.
-                        </p>
-                        <p>Is it okay to use this photo?</p>
+                            <DonationForm />
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
                         <Button color='black' onClick={() => this.setState({open: false})}>
-                        Nope
+                        Done
                         </Button>
-                        <Button
-                        content="Yep, that's me"
-                        labelPosition='right'
-                        icon='checkmark'
-                        onClick={() => this.setState({open: false})}
-                        positive
-                        />
                     </Modal.Actions>
                 </Modal>
             </div>
