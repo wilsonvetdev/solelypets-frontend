@@ -7,6 +7,14 @@ class AnimalShelter extends React.Component{
     state = {
         open: false,
     }
+
+    handleClick = event => {
+        fetch('http://localhost:3000/create-checkout-session', {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(console.log)
+    }
     
     render() {
         let { name, address, city, state, email  } = this.props.shelter
@@ -15,7 +23,8 @@ class AnimalShelter extends React.Component{
                 <h2>Shelter Name: {name}</h2>
                 <h3>Email: {email}</h3>
                 <h3>Address: {address}, {city}, {state}</h3>
-                <Modal
+                <Button content='donate' onClick={this.handleClick} />
+                {/* <Modal
                 onClose={() => this.setState({open: false})}
                 onOpen={() => this.setState({open: true})}
                 open={this.state.open ? true : false}
@@ -32,7 +41,7 @@ class AnimalShelter extends React.Component{
                         Done
                         </Button>
                     </Modal.Actions>
-                </Modal>
+                </Modal> */}
             </div>
         )
     }

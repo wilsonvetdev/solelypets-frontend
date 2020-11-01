@@ -25,7 +25,9 @@ class DonationForm extends React.Component {
     }
 
     handleSubmit = () => {
-        console.log('working')
+        fetch('http:localhost:3000/animal_shelters')
+        .then(response => response.json())
+        .then(console.log)
     }
 
     render(){
