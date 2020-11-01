@@ -9,11 +9,24 @@ class AnimalShelter extends React.Component{
     }
 
     handleClick = event => {
+        const stripe = window.Stripe(process.env.REACT_APP_STRIPE_API_KEY)
         fetch('http://localhost:3000/create-checkout-session', {
-            method: 'POST'
+            method: 'POST',
         })
         .then(response => response.json())
-        .then(console.log)
+        .then(session => {
+            console.log(session, stripe)
+            return stripe.redirectToCheckout({ sessionId: session.id})
+        })
+        .then(result => {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, you should display the localized error message to your
+            // customer using `error.message`.
+            if(result.error) {
+                alert(result.error.message)
+            }
+        })
+        .catch(error => {console.log('ERROR:', error)})
     }
     
     render() {
