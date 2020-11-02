@@ -6,9 +6,11 @@ import { setUserInfo } from '../actions/users'
 import { Container, Grid } from 'semantic-ui-react'
 
 
-class LoginForm extends React.Component {
+class RegisterForm extends React.Component {
 
     state = {
+        first_name: '',
+        last_name: '',
         email: '',
         password: ''
     }
@@ -21,12 +23,14 @@ class LoginForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
                 email: this.state.email, 
                 password: this.state.password
             })
@@ -40,13 +44,27 @@ class LoginForm extends React.Component {
     }
 
     render(){
-        const { email, password } = this.state
+        const { first_name, last_name, email, password } = this.state
         return(
             <Grid columns={3}>
                 <Grid.Row>
                 <Grid.Column></Grid.Column>
                 <Grid.Column>
                     <Form onSubmit={this.handleSubmit}>
+                        <Form.Group>
+                        <Form.Input
+                            placeholder='First Name'
+                            name='first_name'
+                            value={first_name}
+                            onChange={this.handleChange}
+                        />
+                        <Form.Input
+                            placeholder='Last Name'
+                            name='last_name'
+                            value={last_name}
+                            onChange={this.handleChange}
+                        />
+                        </Form.Group>
                         <Form.Group>
                         <Form.Input
                             placeholder='Email'
@@ -76,4 +94,4 @@ const mapDispatchToProps = dispatch => {
     return { setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)) }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(LoginForm))
+export default connect(null, mapDispatchToProps)(withRouter(RegisterForm))

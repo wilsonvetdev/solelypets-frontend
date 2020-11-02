@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Modal } from 'semantic-ui-react'
-import DonationForm from './DonationForm'
+import { Button, Header } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
 
@@ -12,6 +11,13 @@ class AnimalShelter extends React.Component{
         const stripe = window.Stripe(process.env.REACT_APP_STRIPE_API_KEY)
         fetch('http://localhost:3000/create-checkout-session', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            },
+            body: JSON.stringify({
+                animal_shelter_id: this.props.shelter.id
+            })
         })
         .then(response => response.json())
         .then(session => {
@@ -33,28 +39,10 @@ class AnimalShelter extends React.Component{
         let { name, address, city, state, email  } = this.props.shelter
         return(
             <div>
-                <h2>Shelter Name: {name}</h2>
+                <Header size='huge' color='teal'>Shelter Name: {name}</Header>
                 <h3>Email: {email}</h3>
                 <h3>Address: {address}, {city}, {state}</h3>
                 <Button content='donate' onClick={this.handleClick} />
-                {/* <Modal
-                onClose={() => this.setState({open: false})}
-                onOpen={() => this.setState({open: true})}
-                open={this.state.open ? true : false}
-                trigger={<Button>Donate</Button>}
-                >
-                    <Modal.Header>Input Card Info</Modal.Header>
-                    <Modal.Content>
-                        <Modal.Description>
-                            <DonationForm />
-                        </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button color='black' onClick={() => this.setState({open: false})}>
-                        Done
-                        </Button>
-                    </Modal.Actions>
-                </Modal> */}
             </div>
         )
     }
