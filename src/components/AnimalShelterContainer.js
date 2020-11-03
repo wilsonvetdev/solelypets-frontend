@@ -1,24 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Container, Header, Card, Image } from 'semantic-ui-react'
+import twobirds from '../images/twobirds.jpg'
 
 function AnimalShelterContainer(props) {
     let arrayOfShelterComponents = props.animalShelters.map(shelter => {
         return(
-            <li  key={shelter.id}>
+            <Card centered key={shelter.id}>
+            <Image src={twobirds} wrapped ui={false} />
+                <Card.Content>
+                    <Card.Header>{shelter.name}</Card.Header>
                 <Link to={`/animal_shelters/${shelter.id}`}>
-                {shelter.name}
+                view shelter
                 </Link>
-            </li>
+                </Card.Content>
+            </Card>
         )
     })
     return(
-        <div>
-            <h1>Animal Shelter Container</h1>
-            <ul>
+        <Container>
+            <Header color='teal' size='large'>Animal Shelters</Header>
+            <Card.Group>
                 {arrayOfShelterComponents}
-            </ul>
-        </div>
+            </Card.Group>
+        </Container>
     )
 }
 

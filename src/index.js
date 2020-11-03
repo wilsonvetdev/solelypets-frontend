@@ -9,7 +9,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import animalShelterReducer from './reducers/AnimalShelterReducer'
 import userReducer from './reducers/UserReducer'
-import donationReducer from './reducers/DonationReducer'
 
 let reducerPojo = {
   animalSheltersInfo: animalShelterReducer,

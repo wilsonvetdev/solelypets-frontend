@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, Switch, Route } from 'react-router-dom'
-import AnimalShelterContainer from './components/AnimalShelterContainer'
 import { setAnimalShelters } from './actions/animalShelters'
 import { setUserInfo } from './actions/users'
+import { Container, Divider, Header, Grid } from 'semantic-ui-react'
+import AnimalShelterContainer from './components/AnimalShelterContainer'
 import AnimalShelter from './components/AnimalShelter'
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
+import UserHome from './components/UserHome'
 
 class App extends React.Component {
 
@@ -46,13 +49,33 @@ class App extends React.Component {
 
   render(){
     return(
-      <div>
-        <h1>SolelyPets</h1>
-        <ul>
-        <li><Link to='/'>Home Page</Link></li>
-        <li><Link to='/animal_shelters'>All Animal Shelters</Link></li>
-        <li><Link to='/login'>Log In</Link></li>
-        </ul>
+      <Container>
+        <Container>
+          <Header size='huge' color='teal'>SolelyPets</Header>
+        </Container>
+
+        <Divider />
+
+        <Container>
+          <Grid columns={4} divided textAlign='center'>
+            <Grid.Row>
+              <Grid.Column>
+                <Link to='/user_home'>User Home Page</Link>
+              </Grid.Column>
+              <Grid.Column>
+                <Link to='/animal_shelters'>All Animal Shelters</Link>
+              </Grid.Column>
+              <Grid.Column>
+                <Link to='/login'>Log In</Link>
+              </Grid.Column>
+              <Grid.Column>
+                <Link to='/register'>Register</Link>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+
+        <Divider />
 
         <Switch>
           <Route path='/animal_shelters' exact>
@@ -60,16 +83,19 @@ class App extends React.Component {
           </Route>
           <Route path='/animal_shelters/:id' render={this.singleShelter} />
           <Route path='/login' component={LoginForm} />
+          <Route path='/register' component={RegisterForm} />
+          <Route path='/user_home' component={UserHome} />
         </Switch>
 
-      </div>
+      </Container>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    animalShelters: state.animalSheltersInfo.animalShelters
+    animalShelters: state.animalSheltersInfo.animalShelters,
+    userInfo: state.userInfo
   }
 }
 
@@ -80,4 +106,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
