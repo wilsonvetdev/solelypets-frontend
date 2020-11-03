@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Form } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
-import { Container, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 
 class LoginForm extends React.Component {

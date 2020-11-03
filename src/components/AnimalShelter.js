@@ -42,7 +42,7 @@ class AnimalShelter extends React.Component{
                 <Header size='huge' color='teal'>Shelter Name: {name}</Header>
                 <h3>Email: {email}</h3>
                 <h3>Address: {address}, {city}, {state}</h3>
-                <Button content='donate' onClick={this.handleClick} />
+                <Button content='Donate $5' onClick={this.handleClick} />
             </div>
         )
     }

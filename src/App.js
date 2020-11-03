@@ -8,6 +8,7 @@ import AnimalShelterContainer from './components/AnimalShelterContainer'
 import AnimalShelter from './components/AnimalShelter'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import UserHome from './components/UserHome'
 
 class App extends React.Component {
 
@@ -17,10 +18,6 @@ class App extends React.Component {
     .then(sheltersArray => {
       this.props.setAnimalShelters(sheltersArray)
     })
-
-    fetch('http://localhost:3000/my_donations')
-    .then(response => response.json())
-    .then(console.log)
 
     if(localStorage.token){
       fetch('http://localhost:3000/keep_logged_in', {
@@ -63,7 +60,7 @@ class App extends React.Component {
           <Grid columns={4} divided textAlign='center'>
             <Grid.Row>
               <Grid.Column>
-                <Link to='/'>Home Page</Link>
+                <Link to='/user_home'>User Home Page</Link>
               </Grid.Column>
               <Grid.Column>
                 <Link to='/animal_shelters'>All Animal Shelters</Link>
@@ -87,6 +84,7 @@ class App extends React.Component {
           <Route path='/animal_shelters/:id' render={this.singleShelter} />
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={RegisterForm} />
+          <Route path='/user_home' component={UserHome} />
         </Switch>
 
       </Container>
@@ -108,4 +106,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
