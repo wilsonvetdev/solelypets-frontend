@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, TextArea } from 'semantic-ui-react'
+import { addAnimal } from '../actions/shelters'
 
 class AddAnimalForm extends React.Component {
 
@@ -10,9 +11,29 @@ class AddAnimalForm extends React.Component {
         description: ''
     }
 
-    handleChange = (event) => {
+    handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit = event => {
+        fetch('http://localhost:3000/animals', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            },
+            body: JSON.stringify({
+                name: this.state.name,
+                species: this.state.species,
+                description: this.state.description
+            })
+        })
+        .then(response => response.json())
+        .then(newAnimalObj => {
+            console.log(newAnimalObj)
+            this.props.addAnimal(newAnimalObj)
         })
     }
 
@@ -53,4 +74,10 @@ class AddAnimalForm extends React.Component {
     }
 }
 
-export default AddAnimalForm
+const mapDispatchToProps = dispatch => {
+    return {
+        addAnimal: (animalObj) => dispatch(addAnimal(animalObj))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddAnimalForm)

@@ -1,10 +1,14 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { Grid } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import AddAnimalForm from './AddAnimalForm'
 
 class ShelterHome extends React.Component {
+
+    handleClick = (event) => {
+        console.log('clicked')
+    }
 
     render(){
 
@@ -14,9 +18,11 @@ class ShelterHome extends React.Component {
                     Name: {animal.capitalized_name},
                     Type: {animal.capitalized_species},
                     <p>Description: {animal.description}</p>
+                    <Button content='Delete' onClick={this.handleClick}/>
                     <br></br>
                     </li>
         })
+
         return(
             <div>
                 <Header>Logged in as: {name}</Header>

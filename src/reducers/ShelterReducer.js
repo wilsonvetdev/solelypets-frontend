@@ -26,6 +26,18 @@ const shelterReducer = (state = initialState, action) => {
                 donations_received: action.payload.user.donations_received,
                 animals: action.payload.user.animals
             }
+        case 'ADD_ANIMAL':
+            return {
+                ...state,
+                animals: [
+                    ...state.animals, 
+                    {
+                        capitalized_name: action.payload.capitalized_name,
+                        capitalized_species: action.payload.capitalized_species,
+                        description: action.payload.description
+                    }
+                ]
+            }
         default:
             return state
     }
