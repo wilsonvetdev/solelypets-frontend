@@ -45,13 +45,3 @@ class AnimalShelter extends React.Component{
 }
 
 export default AnimalShelter
-
-// address: "324 Kathline Mountain"
-// city: "East Mandyville"
-// email: "erin.reynolds@swaniawski.name"
-// first_name: "Barbra"
-// id: 6
-// last_name: "West"
-// name: "Sheila Broflovski Animal Shelter"
-// password_digest: null
-// state: "Hawaii"

@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form } from 'semantic-ui-react'
+import { Form, Grid } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
-import { Grid } from 'semantic-ui-react'
 
 class RegisterForm extends React.Component {
 

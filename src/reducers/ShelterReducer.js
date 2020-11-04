@@ -23,8 +23,8 @@ const shelterReducer = (state = initialState, action) => {
                 full_address: action.payload.user.full_address,
                 token: action.payload.token,
                 role: action.payload.role,
-                donations_received: action.payload.user.donations_received
-                // animals: action.payload.user.animals
+                donations_received: action.payload.user.donations_received,
+                animals: action.payload.user.animals
             }
         default:
             return state
