@@ -11,7 +11,7 @@ function AnimalShelterContainer(props) {
             <Image src={twobirds} wrapped ui={false} />
                 <Card.Content>
                     <Card.Header>{shelter.name}</Card.Header>
-                <Link to={`/animal_shelters/${shelter.name}`}>
+                <Link to={`/animal_shelters/${shelter.id}`}>
                 view shelter
                 </Link>
                 </Card.Content>

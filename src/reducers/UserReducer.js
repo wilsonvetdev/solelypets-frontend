@@ -1,4 +1,5 @@
 let initialState = {
+    isShelter: false,
     first_name: '',
     customer_id: '',
     token: '',

@@ -3,10 +3,6 @@ import { Button, Header } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
 
-    state = {
-        open: false,
-    }
-
     handleClick = event => {
         const stripe = window.Stripe(process.env.REACT_APP_STRIPE_API_KEY)
         fetch('http://localhost:3000/create-checkout-session', {
@@ -36,12 +32,12 @@ class AnimalShelter extends React.Component{
     }
     
     render() {
-        let { name, address, city, state, email  } = this.props.shelter
+        let { name, full_address, email  } = this.props.shelter
         return(
             <div>
                 <Header size='huge' color='teal'>Shelter Name: {name}</Header>
                 <h3>Email: {email}</h3>
-                <h3>Address: {address}, {city}, {state}</h3>
+                <h3>Address: {full_address} </h3>
                 <Button content='Donate $5' onClick={this.handleClick} />
             </div>
         )

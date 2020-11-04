@@ -57,10 +57,9 @@ class LoginForm extends React.Component {
             })
             .then(response => response.json())
             .then(shelterInfo => {
-                // debugger
                 this.props.setShelterInfo(shelterInfo)
                 localStorage.token = shelterInfo.token 
-                this.props.history.push('/user_home')
+                this.props.history.push('/shelter_home')
             })
         }
     }
