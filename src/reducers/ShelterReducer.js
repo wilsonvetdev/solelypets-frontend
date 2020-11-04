@@ -12,24 +12,26 @@ let initialState = {
 const shelterReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_SHELTER_INFO':
-            // {id: 7, first_name: "Carol ", last_name: "Baskin", name: "Tiger Sanctuary", email: "carol@email.com", …}
+            // {user: {…}, token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJyb2xlIjoiQ…lciJ9.qZtTGs1mgMwrxmdiLNItwk0QSi11tQ-JYA9a9BIfkvo", role: "AnimalShelter"}
+            // role: "AnimalShelter"
+            // token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJyb2xlIjoiQW5pbWFsU2hlbHRlciJ9.qZtTGs1mgMwrxmdiLNItwk0QSi11tQ-JYA9a9BIfkvo"
+            // user:
             // address: "321 street"
             // city: "Brooklyn"
             // email: "carol@email.com"
             // first_name: "Carol "
-            // id: 7
             // last_name: "Baskin"
             // name: "Tiger Sanctuary"
             // state: "New York"
             return {
                 ...state,
-                first_name: action.payload.animal_shelter.first_name,
-                last_name: action.payload.animal_shelter.last_name, 
-                name: action.payload.animal_shelter.name, 
-                email: action.payload.animal_shelter.email, 
-                address: action.payload.animal_shelter.address, 
-                city: action.payload.animal_shelter.city,
-                state: action.payload.animal_shelter.state,
+                first_name: action.payload.user.first_name,
+                last_name: action.payload.user.last_name, 
+                name: action.payload.user.name, 
+                email: action.payload.user.email, 
+                address: action.payload.user.address, 
+                city: action.payload.user.city,
+                state: action.payload.user.state,
                 token: action.payload.token
             }
         default:

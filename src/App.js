@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link, Switch, Route } from 'react-router-dom'
 import { setAnimalShelters } from './actions/animalShelters'
 import { setUserInfo } from './actions/users'
+import { setShelterInfo } from './actions/shelters'
 import { Container, Divider, Header, Grid } from 'semantic-ui-react'
 import AnimalShelterContainer from './components/AnimalShelterContainer'
 import AnimalShelter from './components/AnimalShelter'
@@ -30,7 +31,9 @@ class App extends React.Component {
       })
       .then(response => response.json())
       .then(response => {
-        if(response.token){
+        if(response.role === 'AnimalShelter') {
+          this.props.setShelterInfo(response)
+        } else {
           this.props.setUserInfo(response)
         }
       })
@@ -108,7 +111,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return { 
     setAnimalShelters: (sheltersArray) => dispatch(setAnimalShelters(sheltersArray)),
-    setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)) 
+    setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+    setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo)) 
   }
 }
 
