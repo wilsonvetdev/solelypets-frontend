@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Form, Grid, Select } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
+import { setShelterInfo } from '../actions/shelters'
 
 class LoginForm extends React.Component {
 
@@ -55,7 +56,11 @@ class LoginForm extends React.Component {
                 })
             })
             .then(response => response.json())
-            .then(console.log)
+            .then(shelterInfo => {
+                this.props.setShelterInfo(shelterInfo)
+                localStorage.token = shelterInfo.token 
+                this.props.history.push('/user_home')
+            })
         }
     }
 
@@ -98,7 +103,10 @@ class LoginForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-    return { setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)) }
+    return { 
+        setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+        setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo))
+    }
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(LoginForm))

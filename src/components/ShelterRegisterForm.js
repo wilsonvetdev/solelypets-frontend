@@ -1,17 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form } from 'semantic-ui-react'
-import { setUserInfo } from '../actions/users'
-import { Grid } from 'semantic-ui-react'
+import { Form, Grid } from 'semantic-ui-react'
+import { setShelterInfo } from '../actions/shelters'
 
-class RegisterForm extends React.Component {
+
+class ShelterRegisterForm extends React.Component {
 
     state = {
         first_name: '',
         last_name: '',
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        address: '',
+        city: '',
+        state: ''
     }
 
     handleChange = (event) => {
@@ -22,7 +26,7 @@ class RegisterForm extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        fetch('http://localhost:3000/register', {
+        fetch('http://localhost:3000/shelter_register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,20 +34,25 @@ class RegisterForm extends React.Component {
             body: JSON.stringify({
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
+                name: this.state.name,
                 email: this.state.email, 
-                password: this.state.password
+                password: this.state.password,
+                address: this.state.address,
+                city: this.state.city,
+                state: this.state.state
             })
         })
         .then(response => response.json())
-        .then(userInfo => {
-            this.props.setUserInfo(userInfo)
-            localStorage.token = userInfo.token
+        .then(shelterInfo => {
+            console.log(shelterInfo)
+            this.props.setShelterInfo(shelterInfo)
+            localStorage.token = shelterInfo.token
             this.props.history.push('/animal_shelters')
         })
     }
 
     render(){
-        const { first_name, last_name, email, password } = this.state
+        const { first_name, last_name, name, email, password, address, city, state } = this.state
         return(
             <Grid columns={3}>
                 <Grid.Row>
@@ -61,6 +70,32 @@ class RegisterForm extends React.Component {
                             placeholder='Last Name'
                             name='last_name'
                             value={last_name}
+                            onChange={this.handleChange}
+                        />
+                        <Form.Input
+                            placeholder='Shelter Name'
+                            name='name'
+                            value={name}
+                            onChange={this.handleChange}
+                        />
+                        </Form.Group>
+                        <Form.Group>
+                        <Form.Input
+                            placeholder='Address'
+                            name='address'
+                            value={address}
+                            onChange={this.handleChange}
+                        />
+                        <Form.Input
+                            placeholder='City'
+                            name='city'
+                            value={city}
+                            onChange={this.handleChange}
+                        />
+                        <Form.Input
+                            placeholder='State'
+                            name='state'
+                            value={state}
                             onChange={this.handleChange}
                         />
                         </Form.Group>
@@ -90,7 +125,7 @@ class RegisterForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-    return { setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)) }
+    return { setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo)) }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(RegisterForm))
+export default connect(null, mapDispatchToProps)(withRouter(ShelterRegisterForm))

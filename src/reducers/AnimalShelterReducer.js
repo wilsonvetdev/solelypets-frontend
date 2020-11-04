@@ -1,8 +1,8 @@
-let initialStateOfAnimalShelterReducer = {
+let initialState = {
     animalShelters: []
 }
 
-const animalShelterReducer = (state = initialStateOfAnimalShelterReducer, action) => {
+const animalShelterReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_ANIMAL_SHELTERS':
             return {

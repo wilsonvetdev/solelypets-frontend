@@ -8,7 +8,9 @@ import AnimalShelterContainer from './components/AnimalShelterContainer'
 import AnimalShelter from './components/AnimalShelter'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import ShelterRegisterForm from './components/ShelterRegisterForm'
 import UserHome from './components/UserHome'
+import Landing from './components/Landing'
 
 class App extends React.Component {
 
@@ -51,7 +53,9 @@ class App extends React.Component {
     return(
       <Container>
         <Container>
-          <Header size='huge' color='teal'>SolelyPets</Header>
+          <Header size='huge'>
+            <Link style={{color: '#11B5AC'}} to='/'>SolelyPets</Link>
+          </Header>
         </Container>
 
         <Divider />
@@ -60,7 +64,7 @@ class App extends React.Component {
           <Grid columns={4} divided textAlign='center'>
             <Grid.Row>
               <Grid.Column>
-                <Link to='/user_home'>User Home Page</Link>
+                <Link to='/user_home'>Home Page</Link>
               </Grid.Column>
               <Grid.Column>
                 <Link to='/animal_shelters'>All Animal Shelters</Link>
@@ -81,9 +85,11 @@ class App extends React.Component {
           <Route path='/animal_shelters' exact>
             <AnimalShelterContainer />
           </Route>
+          <Route path='/' component={Landing} exact/>
           <Route path='/animal_shelters/:id' render={this.singleShelter} />
           <Route path='/login' component={LoginForm} />
           <Route path='/register' component={RegisterForm} />
+          <Route path='/shelter_register' component={ShelterRegisterForm} />
           <Route path='/user_home' component={UserHome} />
         </Switch>
 
