@@ -7,7 +7,7 @@ import twobirds from '../images/twobirds.jpg'
 function AnimalShelterContainer(props) {
     let arrayOfShelterComponents = props.animalShelters.map(shelter => {
         return(
-            <Card centered key={shelter.id}>
+            <Card centered key={shelter.name}>
             <Image src={twobirds} wrapped ui={false} />
                 <Card.Content>
                     <Card.Header>{shelter.name}</Card.Header>

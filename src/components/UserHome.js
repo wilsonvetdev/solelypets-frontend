@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 class UserHome extends React.Component {
 
     render(){
+        
         let { 
             first_name, 
             email, 
@@ -53,6 +54,8 @@ const mapStateToProps = state => {
         paid_donations_count: state.userInfo.paid_donations_count,
         total_donations_amount: state.userInfo.total_donations_amount
     }
+
 }
+
 
 export default connect(mapStateToProps)(UserHome)

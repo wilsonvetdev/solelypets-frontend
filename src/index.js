@@ -8,10 +8,12 @@ import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import animalShelterReducer from './reducers/AnimalShelterReducer'
+import shelterReducer from './reducers/ShelterReducer'
 import userReducer from './reducers/UserReducer'
 
 let reducerPojo = {
   animalSheltersInfo: animalShelterReducer,
+  shelterInfo: shelterReducer,
   userInfo: userReducer
 }
 

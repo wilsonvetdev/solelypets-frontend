@@ -1,4 +1,5 @@
-let initialStateOfUserReducer = {
+let initialState = {
+    isShelter: false,
     first_name: '',
     customer_id: '',
     token: '',
@@ -9,7 +10,7 @@ let initialStateOfUserReducer = {
     comments: []
 }
 
-const userReducer = (state = initialStateOfUserReducer, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_USER_INFO':
             return {
