@@ -7,7 +7,8 @@ let initialState = {
     full_address: '',
     token: '',
     animals: [],
-    role: ''
+    role: '',
+    donations_received: 0,
 }
 
 const shelterReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ const shelterReducer = (state = initialState, action) => {
                 full_address: action.payload.user.full_address,
                 token: action.payload.token,
                 role: action.payload.role,
+                donations_received: action.payload.user.donations_received
                 // animals: action.payload.user.animals
             }
         default:
