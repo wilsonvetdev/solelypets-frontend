@@ -39,6 +39,12 @@ const shelterReducer = (state = initialState, action) => {
                     }
                 ]
             }
+        case 'DELETE_ANIMAL':
+            let filteredAnimals = state.animals.filter(animal => animal.id !== action.payload.id)
+            return {
+                ...state,
+                animals: filteredAnimals
+            }
         default:
             return state
     }

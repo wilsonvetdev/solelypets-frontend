@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Divider } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { deleteAnimal } from '../actions/shelters'
 
 class Animal extends React.Component {
 
@@ -12,7 +14,7 @@ class Animal extends React.Component {
         })
         .then(response => response.json())
         .then(returnedObj => {
-            console.log(returnedObj)
+            this.props.deleteAnimal(returnedObj)
         })
     }
     
@@ -30,4 +32,10 @@ class Animal extends React.Component {
     }
 }
 
-export default Animal
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteAnimal: (returendObj) => dispatch(deleteAnimal(returendObj))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Animal)
