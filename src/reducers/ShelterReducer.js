@@ -8,7 +8,7 @@ let initialState = {
     token: '',
     animals: [],
     role: '',
-    donations_received: 0,
+    donations_received: 0
 }
 
 const shelterReducer = (state = initialState, action) => {

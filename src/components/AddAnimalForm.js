@@ -32,7 +32,6 @@ class AddAnimalForm extends React.Component {
         })
         .then(response => response.json())
         .then(newAnimalObj => {
-            console.log(newAnimalObj)
             this.props.addAnimal(newAnimalObj)
             this.setState({
                 name: '',

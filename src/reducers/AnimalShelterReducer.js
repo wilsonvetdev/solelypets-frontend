@@ -1,5 +1,5 @@
 let initialState = {
-    animalShelters: []
+    animalShelters: [],
 }
 
 const animalShelterReducer = (state = initialState, action) => {
@@ -9,6 +9,8 @@ const animalShelterReducer = (state = initialState, action) => {
                 ...state,
                 animalShelters: [ ...state.animalShelters, ...action.payload ]
             }
+        // case 'ADD_ANIMAL':
+        //     console.log('hello from animalShelterReducer')
         default:
             return state
     }
