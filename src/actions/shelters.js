@@ -11,3 +11,10 @@ export const addAnimal = (animalInfo) => {
         payload: animalInfo
     }
 }
+
+export const deleteAnimal = (animalInfo) => {
+    return {
+        type: 'DELETE_ANIMAL',
+        payload: animalInfo
+    }
+}

@@ -34,6 +34,11 @@ class AddAnimalForm extends React.Component {
         .then(newAnimalObj => {
             console.log(newAnimalObj)
             this.props.addAnimal(newAnimalObj)
+            this.setState({
+                name: '',
+                species: '',
+                description: ''
+            })
         })
     }
 

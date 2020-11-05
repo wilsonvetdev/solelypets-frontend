@@ -8,7 +8,7 @@ import AnimalContainer from './AnimalContainer'
 class ShelterHome extends React.Component {
 
     render(){
-        let { first_name, last_name, name, email, full_address, donations_received, animals } = this.props
+        let { first_name, last_name, name, email, full_address, donations_received, animals, token } = this.props
         return(
             <div>
                 <Header>Logged in as: {name}</Header>
