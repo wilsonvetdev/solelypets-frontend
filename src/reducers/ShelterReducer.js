@@ -32,6 +32,7 @@ const shelterReducer = (state = initialState, action) => {
                 animals: [
                     ...state.animals, 
                     {
+                        id: action.payload.id,
                         capitalized_name: action.payload.capitalized_name,
                         capitalized_species: action.payload.capitalized_species,
                         description: action.payload.description

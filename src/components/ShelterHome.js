@@ -3,26 +3,12 @@ import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Button } from 'semantic-ui-react'
 import AddAnimalForm from './AddAnimalForm'
+import AnimalContainer from './AnimalContainer'
 
 class ShelterHome extends React.Component {
 
-    handleClick = (event) => {
-        console.log('clicked')
-    }
-
     render(){
-
         let { first_name, last_name, name, email, full_address, donations_received, animals } = this.props
-        let listsOfAnimals = animals.map(animal => {
-            return <li key={animal.id}>
-                    Name: {animal.capitalized_name},
-                    Type: {animal.capitalized_species},
-                    <p>Description: {animal.description}</p>
-                    <Button content='Delete' onClick={this.handleClick}/>
-                    <br></br>
-                    </li>
-        })
-
         return(
             <div>
                 <Header>Logged in as: {name}</Header>
@@ -37,9 +23,9 @@ class ShelterHome extends React.Component {
                 <div>
                     <AddAnimalForm />
                 </div>
-                <ul>
-                    {listsOfAnimals}
-                </ul>
+                <div>
+                    <AnimalContainer animals={animals} />
+                </div>
             </div>
         )
     }
