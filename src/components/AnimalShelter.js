@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Header, Divider } from 'semantic-ui-react'
-import { connect } from 'react-redux'
 
 class AnimalShelter extends React.Component{
 
