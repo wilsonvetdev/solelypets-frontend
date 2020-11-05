@@ -3,9 +3,9 @@ let initialState = {
 }
 
 const animalShelterReducer = (state = initialState, action) => {
-    let foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
-    let foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
-    let copyOfShelters = state.animalShelters
+    let foundShelter;
+    let foundShelterIndex;
+    let copyOfShelters; 
     let copyOfShelter;
     switch (action.type) {
         case 'SET_ANIMAL_SHELTERS':
@@ -14,19 +14,25 @@ const animalShelterReducer = (state = initialState, action) => {
                 animalShelters: [ ...state.animalShelters, ...action.payload ]
             }
         case 'ADD_ANIMAL':
+            foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
+            foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+            copyOfShelters = state.animalShelters
             let copyOfAnimals = [ ...foundShelter.animals, {
                 id: action.payload.id,
                 capitalized_name: action.payload.capitalized_name,
                 capitalized_species: action.payload.capitalized_species,
                 description: action.payload.description
             }]
-            foundShelter.animals = copyOfAnimals
-            copyOfShelters[foundShelterIndex] = foundShelter
+            copyOfShelter = { ...foundShelter, animals: copyOfAnimals}
+            copyOfShelters[foundShelterIndex] = copyOfShelter
             return {
                 ...state,
                 animalShelters: [ ...copyOfShelters ]
             }
         case 'DELETE_ANIMAL':
+            foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
+            foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+            copyOfShelters = state.animalShelters
             let filteredAnimals = foundShelter.animals.filter(animal => {
                 return animal.id !== action.payload.id
             })
@@ -37,6 +43,9 @@ const animalShelterReducer = (state = initialState, action) => {
                 animalShelters: [ ...copyOfShelters ]
             }
         case 'UPDATE_ANIMAL':
+            foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
+            foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+            copyOfShelters = state.animalShelters
             let updatedAnimals = foundShelter.animals.map(animal => {
                 if(animal.id === action.payload.id) {
                     return {
