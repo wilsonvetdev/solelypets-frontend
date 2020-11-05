@@ -45,6 +45,23 @@ const shelterReducer = (state = initialState, action) => {
                 ...state,
                 animals: filteredAnimals
             }
+        case 'UPDATE_ANIMAL':
+            let copyOfAnimals = state.animals.map(animal => {
+                if(animal.id === action.payload.id) {
+                    return {
+                        id: action.payload.id,
+                        capitalized_name: action.payload.capitalized_name,
+                        capitalized_species: action.payload.capitalized_species,
+                        description: action.payload.description
+                    }
+                } else {
+                    return animal
+                }
+            })
+            return {
+                ...state,
+                animals: copyOfAnimals
+            }
         default:
             return state
     }

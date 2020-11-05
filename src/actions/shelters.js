@@ -18,3 +18,10 @@ export const deleteAnimal = (animalInfo) => {
         payload: animalInfo
     }
 }
+
+export const updateAnimal = (animalInfo) => {
+    return{
+        type: 'UPDATE_ANIMAL',
+        payload: animalInfo
+    }
+}
