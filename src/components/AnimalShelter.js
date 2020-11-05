@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header } from 'semantic-ui-react'
+import { Button, Header, Divider } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
 
@@ -32,26 +32,30 @@ class AnimalShelter extends React.Component{
     }
     
     render() {
-        let { name, full_address, email  } = this.props.shelter
+        let { name, full_address, email, animals  } = this.props.shelter
+        let listOfAnimals = animals.map(animal => {
+            return <li key={animal.id}>
+                        <div>
+                                <p>Name: {animal.capitalized_name}</p>
+                                <p>Type: {animal.capitalized_species}</p>
+                                <p>Description: {animal.description}</p>
+                        </div>
+                        <Divider />
+                    </li>
+        })
         return(
             <div>
                 <Header size='huge' color='teal'>Shelter Name: {name}</Header>
                 <h3>Email: {email}</h3>
                 <h3>Address: {full_address} </h3>
                 <Button content='Donate $5' onClick={this.handleClick} />
+                <ul>
+                    {listOfAnimals}
+                </ul>
             </div>
         )
     }
 }
 
-export default AnimalShelter
 
-// address: "324 Kathline Mountain"
-// city: "East Mandyville"
-// email: "erin.reynolds@swaniawski.name"
-// first_name: "Barbra"
-// id: 6
-// last_name: "West"
-// name: "Sheila Broflovski Animal Shelter"
-// password_digest: null
-// state: "Hawaii"
+export default AnimalShelter

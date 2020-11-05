@@ -1,11 +1,14 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { Button } from 'semantic-ui-react'
+import AddAnimalForm from './AddAnimalForm'
+import AnimalContainer from './AnimalContainer'
 
 class ShelterHome extends React.Component {
 
     render(){
-        let { first_name, last_name, name, email, full_address, donations_received } = this.props
+        let { first_name, last_name, name, email, full_address, donations_received, animals } = this.props
         return(
             <div>
                 <Header>Logged in as: {name}</Header>
@@ -16,8 +19,14 @@ class ShelterHome extends React.Component {
                     <li>Address: {full_address}</li>
                     <li>Donations Received: ${donations_received} </li>
                 </ul>
+                <Header>Your List of Animals:</Header>
+                <div>
+                    <AddAnimalForm />
+                </div>
+                <div>
+                    <AnimalContainer animals={animals} />
+                </div>
             </div>
-
         )
     }
 }
@@ -29,7 +38,8 @@ const mapStateToProps = state => {
         name: state.shelterInfo.name,
         email: state.shelterInfo.email,
         full_address: state.shelterInfo.full_address,
-        donations_received: state.shelterInfo.donations_received
+        donations_received: state.shelterInfo.donations_received,
+        animals: state.shelterInfo.animals
     }
 }
 

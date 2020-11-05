@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Form, Grid } from 'semantic-ui-react'
+import { addShelter } from '../actions/animalShelters'
 import { setShelterInfo } from '../actions/shelters'
 
 
@@ -44,8 +45,8 @@ class ShelterRegisterForm extends React.Component {
         })
         .then(response => response.json())
         .then(shelterInfo => {
-            console.log(shelterInfo)
             this.props.setShelterInfo(shelterInfo)
+            this.props.addShelter(shelterInfo)
             localStorage.token = shelterInfo.token
             this.props.history.push('/animal_shelters')
         })
@@ -125,7 +126,10 @@ class ShelterRegisterForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => {
-    return { setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo)) }
+    return { 
+        setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo)),
+        addShelter: (shelterInfo) => dispatch(addShelter(shelterInfo))
+    }
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(ShelterRegisterForm))
