@@ -13,6 +13,23 @@ const animalShelterReducer = (state = initialState, action) => {
                 ...state,
                 animalShelters: [ ...state.animalShelters, ...action.payload ]
             }
+        case 'ADD_ANIMAL_SHELTER':
+
+            let newAnimalShelter = {
+                id: action.payload.user.id,
+                first_name: action.payload.user.first_name,
+                last_name: action.payload.user.last_name,
+                name: action.payload.user.name,
+                email: action.payload.user.email,
+                full_address: action.payload.user.full_address,
+                donations_received: action.payload.user.donations_received,
+                animals: action.payload.user.donations_received
+            } 
+            
+            return {
+                ...state,
+                animalShelters: [ ...state.animalShelters, newAnimalShelter]
+            }
         case 'ADD_ANIMAL':
             foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
             foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)

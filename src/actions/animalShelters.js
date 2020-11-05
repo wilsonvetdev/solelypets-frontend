@@ -4,3 +4,10 @@ export const setAnimalShelters = (animalShelters) => {
         payload: animalShelters
     }
 }
+
+export const addShelter = (shelterInfo) => {
+    return{
+        type: 'ADD_ANIMAL_SHELTER',
+        payload: shelterInfo
+    }
+}
