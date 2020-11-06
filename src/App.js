@@ -13,6 +13,7 @@ import ShelterRegisterForm from './components/ShelterRegisterForm'
 import UserHome from './components/UserHome'
 import ShelterHome from './components/ShelterHome'
 import Landing from './components/Landing'
+import NewItemForm from './components/Upload'
 
 class App extends React.Component {
 
@@ -96,6 +97,7 @@ class App extends React.Component {
           <Route path='/shelter_register' component={ShelterRegisterForm} />
           <Route path='/user_home' component={UserHome} />
           <Route path='/shelter_home' component={ShelterHome} />
+          <Route path='/upload' component={NewItemForm} />
         </Switch>
 
       </Container>
