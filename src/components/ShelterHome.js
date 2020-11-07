@@ -3,15 +3,30 @@ import { Header, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
+import NewItemForm from './Upload'
 
 class ShelterHome extends React.Component {
 
+    state = {
+        image: ''
+    }
+
+    getImg = (imgObject) => {
+        this.setState({image: imgObject.image})
+    }
+
     render(){
-        let { first_name, last_name, name, email, full_address, donations_received, animals } = this.props
+        console.log(this.props)
+        let { first_name, last_name, name, email, full_address, donations_received, animals, image } = this.props
         return(
             <div>
                 <Header>Logged in as: {name}</Header>
-                <Image size='small' />
+                {this.state.image ?
+                        <Image src={this.state.image} size='small'/>
+                        :
+                        <Image src={image} size='small'/>
+                }
+                <NewItemForm getImg={this.getImg} />
                 <Header>Account Details:</Header>
                 <ul>
                     <li>Point of Contact: {last_name}, {first_name}</li>
@@ -39,7 +54,8 @@ const mapStateToProps = state => {
         email: state.shelterInfo.email,
         full_address: state.shelterInfo.full_address,
         donations_received: state.shelterInfo.donations_received,
-        animals: state.shelterInfo.animals
+        animals: state.shelterInfo.animals,
+        image: state.shelterInfo.image
     }
 }
 

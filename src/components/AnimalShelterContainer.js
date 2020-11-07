@@ -8,7 +8,15 @@ function AnimalShelterContainer(props) {
     let arrayOfShelterComponents = props.animalShelters.map(shelter => {
         return(
             <Card centered key={shelter.id}>
-            <Image src={twobirds} wrapped ui={false} />
+
+            <Image 
+                src={
+                    shelter.items.length === 0 ? twobirds :
+                    shelter.items[shelter.items.length-1].image} 
+                wrapped ui={false} 
+                
+            />   
+
                 <Card.Content>
                     <Card.Header>{shelter.name}</Card.Header>
                 <Link to={`/animal_shelters/${shelter.id}`}>

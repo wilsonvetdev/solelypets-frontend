@@ -105,8 +105,11 @@ class Animal extends React.Component {
                         <p>Name: {capitalized_name}</p>
                         <p>Type: {capitalized_species}</p>
                         <p>Description: {description}</p>
+                        {this.state.image ?
                         <Image src={this.state.image} size='small'/>
+                        :
                         <Image src={items.length === 0 ? null : items[items.length-1].image} size='small'/>
+                        }
                     </div>
                 }
                 <Button content='Delete' onClick={this.handleDelete} />

@@ -20,22 +20,30 @@ class NewItemForm extends React.Component {
         event.preventDefault()
         const form = new FormData()
         form.append("image", this.state.image)
-        form.append('animal_id', this.props.animal_id)
-        fetch(`http://localhost:3000/items_upload`, {
-            method: "POST",
-            headers: { 'Authorization': localStorage.token },
-            body: form
-        })
-        .then(response => response.json())
-        // {id: 4, image: "http://res.cloudinary.com/dcupfetpr/image/upload/v1604623148/fw5pjdmoloxxob68s5g2.jpg", video: null, created_at: "2020-11-06T00:39:08.578Z", updated_at: "2020-11-06T00:39:08.578Z"}
-        // created_at: "2020-11-06T00:39:08.578Z"
-        // id: 4
-        // image: "http://res.cloudinary.com/dcupfetpr/image/upload/v1604623148/fw5pjdmoloxxob68s5g2.jpg"
-        // updated_at: "2020-11-06T00:39:08.578Z"
-        // video: null
-        .then(imgObject => {
-            this.props.getImg(imgObject)
-        })
+        if(!!this.props.animal_id) {
+            form.append('animal_id', this.props.animal_id)
+            fetch('http://localhost:3000/items_upload', {
+                method: "POST",
+                headers: { 'Authorization': localStorage.token },
+                body: form
+            })
+            .then(response => response.json())
+            .then(imgObj => {
+                this.props.getImg(imgObj)
+            })
+        } else {
+            console.log('logic here for shelter image')
+            fetch('http://localhost:3000/items_upload', {
+                method: "POST",
+                headers: { 'Authorization': localStorage.token },
+                body: form
+            })
+            .then(response => response.json())
+            .then(imgObj => {
+                console.log(imgObj)
+                this.props.getImg(imgObj)
+            })
+        }
         // need credit card method to update animal instance
         // might need to go through reducer as well to update the other end
     }
