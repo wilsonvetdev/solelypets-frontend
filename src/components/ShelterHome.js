@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
 import NewItemForm from './Upload'
+import { updateImg } from '../actions/shelters'
 
 class ShelterHome extends React.Component {
 
@@ -11,12 +12,7 @@ class ShelterHome extends React.Component {
         image: ''
     }
 
-    getImg = (imgObject) => {
-        this.setState({image: imgObject.image})
-    }
-
     render(){
-        console.log(this.props)
         let { first_name, last_name, name, email, full_address, donations_received, animals, image } = this.props
         return(
             <div>
@@ -26,7 +22,7 @@ class ShelterHome extends React.Component {
                         :
                         <Image src={image} size='small'/>
                 }
-                <NewItemForm getImg={this.getImg} />
+                <NewItemForm updateImg={this.props.updateImg} />
                 <Header>Account Details:</Header>
                 <ul>
                     <li>Point of Contact: {last_name}, {first_name}</li>
@@ -59,4 +55,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(ShelterHome)
+const mapDispatchToProps = dispatch => {
+    return {
+        updateImg: imgObj => dispatch(updateImg(imgObj))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShelterHome)

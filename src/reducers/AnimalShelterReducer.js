@@ -60,7 +60,6 @@ const animalShelterReducer = (state = initialState, action) => {
                 animalShelters: [ ...copyOfShelters ]
             }
         case 'UPDATE_ANIMAL':
-            debugger
             foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
             foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
             copyOfShelters = state.animalShelters
@@ -82,6 +81,17 @@ const animalShelterReducer = (state = initialState, action) => {
                 ...state,
                 animalShelters: [ ...copyOfShelters ]
             }
+        case 'UPDATE_SHELTER_IMG':
+        // debugger
+        foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter_id)
+        foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+        copyOfShelters = state.animalShelters
+        copyOfShelter = { ...foundShelter, items: [ ...foundShelter.items, action.payload ] }
+        copyOfShelters[foundShelterIndex] = copyOfShelter
+        return {
+            ...state,
+            animalShelters: [ ...copyOfShelters ]
+        }
         default:
             return state
     }

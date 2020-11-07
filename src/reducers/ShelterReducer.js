@@ -28,6 +28,11 @@ const shelterReducer = (state = initialState, action) => {
                 animals: action.payload.user.animals,
                 image: action.payload.user.items[action.payload.user.items.length-1].image
             }
+        case 'UPDATE_SHELTER_IMG':
+            return {
+                ...state,
+                image: action.payload.image
+            }
         case 'ADD_ANIMAL':
             return {
                 ...state,

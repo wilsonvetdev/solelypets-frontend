@@ -9,13 +9,13 @@ function AnimalShelterContainer(props) {
         return(
             <Card centered key={shelter.id}>
 
-            <Image 
-                src={
-                    shelter.items.length === 0 ? twobirds :
-                    shelter.items[shelter.items.length-1].image} 
-                wrapped ui={false} 
-                
-            />   
+                <Image 
+                    src={
+                        shelter.items.length === 0 ? twobirds :
+                        shelter.items[shelter.items.length-1].image} 
+                    wrapped ui={false} 
+                    
+                />   
 
                 <Card.Content>
                     <Card.Header>{shelter.name}</Card.Header>

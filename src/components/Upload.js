@@ -40,8 +40,7 @@ class NewItemForm extends React.Component {
             })
             .then(response => response.json())
             .then(imgObj => {
-                console.log(imgObj)
-                this.props.getImg(imgObj)
+                this.props.updateImg(imgObj)
             })
         }
         // need credit card method to update animal instance
