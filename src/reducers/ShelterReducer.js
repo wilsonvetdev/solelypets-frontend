@@ -52,7 +52,7 @@ const shelterReducer = (state = initialState, action) => {
                         id: action.payload.id,
                         capitalized_name: action.payload.capitalized_name,
                         capitalized_species: action.payload.capitalized_species,
-                        description: action.payload.description
+                        description: action.payload.description,
                     }
                 } else {
                     return animal

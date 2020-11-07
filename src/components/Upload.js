@@ -1,10 +1,10 @@
 import React from 'react'
+import { Form, Button } from 'semantic-ui-react' 
 
 class NewItemForm extends React.Component {
 
     state = {
         image: {},
-        video: {}
     }
 
     onChange = (event) => {
@@ -20,7 +20,7 @@ class NewItemForm extends React.Component {
         event.preventDefault()
         const form = new FormData()
         form.append("image", this.state.image)
-        form.append("video", this.state.video) 
+        form.append('animal_id', this.props.animal_id)
         fetch(`http://localhost:3000/items_upload`, {
             method: "POST",
             headers: { 'Authorization': localStorage.token },
@@ -33,22 +33,22 @@ class NewItemForm extends React.Component {
         // image: "http://res.cloudinary.com/dcupfetpr/image/upload/v1604623148/fw5pjdmoloxxob68s5g2.jpg"
         // updated_at: "2020-11-06T00:39:08.578Z"
         // video: null
-        .then(console.log)
+        .then(imgObject => {
+            this.props.getImg(imgObject)
+        })
+        // need credit card method to update animal instance
+        // might need to go through reducer as well to update the other end
     }
 
     render(){
         return (
             <div className="form">
-                <h1>New Upload</h1>
-                <form onSubmit={this.onSubmit}>
+                <Form onSubmit={this.onSubmit}>
                     <label>Image Upload</label>
-                    <input type="file" name="image" onChange={this.onChange}/>
+                    <Form.Input type="file" name="image" onChange={this.onChange}/>
                     <br/>
-                    {/* <label>Video Upload</label>
-                    <input type="file" name="video" onChange={this.onChange}/>
-                    <br/> */}
-                    <input type="submit"/>
-                </form>
+                    <Button content='Upload' type="submit" />
+                </Form>
             </div>
         )
     }

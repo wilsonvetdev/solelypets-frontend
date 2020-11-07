@@ -1,7 +1,6 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { Button } from 'semantic-ui-react'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
 
@@ -12,6 +11,7 @@ class ShelterHome extends React.Component {
         return(
             <div>
                 <Header>Logged in as: {name}</Header>
+                <Image size='small' />
                 <Header>Account Details:</Header>
                 <ul>
                     <li>Point of Contact: {last_name}, {first_name}</li>
