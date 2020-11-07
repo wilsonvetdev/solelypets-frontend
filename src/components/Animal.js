@@ -1,7 +1,9 @@
 import React from 'react'
-import { Button, Divider, Form } from 'semantic-ui-react'
+import { Button, Divider, Form, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { deleteAnimal, updateAnimal } from '../actions/shelters'
+import NewItemForm from './Upload'
+
 
 class Animal extends React.Component {
     
@@ -9,7 +11,14 @@ class Animal extends React.Component {
         name: this.props.animal.capitalized_name,
         species: this.props.animal.capitalized_species,
         description: this.props.animal.description,
+        image: '',
         edit: false
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
     handleDelete = event => {
@@ -25,11 +34,6 @@ class Animal extends React.Component {
         })
     }
 
-    handleChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
 
     toggleEdit = (event) => {
         this.setState({ edit: !this.state.edit })
@@ -37,7 +41,6 @@ class Animal extends React.Component {
             this.handleUpdate(event)
         }
     }
-
 
 
     handleUpdate = (event) => {
@@ -59,9 +62,13 @@ class Animal extends React.Component {
             this.props.updateAnimal(updatedObj)
         })
     }
+
+    getImg = (imgObject) => {
+        this.setState({image: imgObject.image})
+    }
     
     render(){
-        let { capitalized_name, capitalized_species, description } = this.props.animal
+        let { id, capitalized_name, capitalized_species, description, items } = this.props.animal
         return(
             <li>
                 {
@@ -98,10 +105,16 @@ class Animal extends React.Component {
                         <p>Name: {capitalized_name}</p>
                         <p>Type: {capitalized_species}</p>
                         <p>Description: {description}</p>
+                        {this.state.image ?
+                        <Image src={this.state.image} size='small'/>
+                        :
+                        <Image src={items.length === 0 ? null : items[items.length-1].image} size='small'/>
+                        }
                     </div>
                 }
                 <Button content='Delete' onClick={this.handleDelete} />
                 <Button content='Edit' onClick={this.toggleEdit} />
+                <NewItemForm animal_id={id} getImg={this.getImg} />
                 <Divider></Divider>
             </li>
         )
@@ -110,8 +123,8 @@ class Animal extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteAnimal: (returendObj) => dispatch(deleteAnimal(returendObj)),
-        updateAnimal: (returendObj) => dispatch(updateAnimal(returendObj))
+        deleteAnimal: (returnedObj) => dispatch(deleteAnimal(returnedObj)),
+        updateAnimal: (returnedObj) => dispatch(updateAnimal(returnedObj))
     }
 }
 

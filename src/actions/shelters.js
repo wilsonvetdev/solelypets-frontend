@@ -20,8 +20,15 @@ export const deleteAnimal = (animalInfo) => {
 }
 
 export const updateAnimal = (animalInfo) => {
-    return{
+    return {
         type: 'UPDATE_ANIMAL',
         payload: animalInfo
+    }
+}
+
+export const updateImg = (imgInfo) => {
+    return {
+        type: 'UPDATE_SHELTER_IMG',
+        payload: imgInfo
     }
 }

@@ -1,17 +1,28 @@
 import React from 'react'
-import { Header } from 'semantic-ui-react'
+import { Header, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { Button } from 'semantic-ui-react'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
+import NewItemForm from './Upload'
+import { updateImg } from '../actions/shelters'
 
 class ShelterHome extends React.Component {
 
+    state = {
+        image: ''
+    }
+
     render(){
-        let { first_name, last_name, name, email, full_address, donations_received, animals } = this.props
+        let { first_name, last_name, name, email, full_address, donations_received, animals, image } = this.props
         return(
             <div>
                 <Header>Logged in as: {name}</Header>
+                {this.state.image ?
+                        <Image src={this.state.image} size='small'/>
+                        :
+                        <Image src={image} size='small'/>
+                }
+                <NewItemForm updateImg={this.props.updateImg} />
                 <Header>Account Details:</Header>
                 <ul>
                     <li>Point of Contact: {last_name}, {first_name}</li>
@@ -39,8 +50,15 @@ const mapStateToProps = state => {
         email: state.shelterInfo.email,
         full_address: state.shelterInfo.full_address,
         donations_received: state.shelterInfo.donations_received,
-        animals: state.shelterInfo.animals
+        animals: state.shelterInfo.animals,
+        image: state.shelterInfo.image
     }
 }
 
-export default connect(mapStateToProps)(ShelterHome)
+const mapDispatchToProps = dispatch => {
+    return {
+        updateImg: imgObj => dispatch(updateImg(imgObj))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShelterHome)

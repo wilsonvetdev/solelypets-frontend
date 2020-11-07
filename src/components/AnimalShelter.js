@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Divider } from 'semantic-ui-react'
+import { Button, Header, Divider, Image } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
 
@@ -35,10 +35,11 @@ class AnimalShelter extends React.Component{
         let { name, full_address, email, animals  } = this.props.shelter
         let listOfAnimals = animals.map(animal => {
             return <li key={animal.id}>
-                        <div>
-                                <p>Name: {animal.capitalized_name}</p>
-                                <p>Type: {animal.capitalized_species}</p>
-                                <p>Description: {animal.description}</p>
+                        <div>   
+                            <p>Name: {animal.capitalized_name}</p>
+                            <p>Type: {animal.capitalized_species}</p>
+                            <p>Description: {animal.description}</p>
+                            <Image src={animal.items.length === 0 ? null : animal.items[animal.items.length-1].image} size='small'/>
                         </div>
                         <Divider />
                     </li>

@@ -23,7 +23,7 @@ const animalShelterReducer = (state = initialState, action) => {
                 email: action.payload.user.email,
                 full_address: action.payload.user.full_address,
                 donations_received: action.payload.user.donations_received,
-                animals: action.payload.user.donations_received
+                animals: action.payload.user.animals
             } 
             
             return {
@@ -81,6 +81,16 @@ const animalShelterReducer = (state = initialState, action) => {
                 ...state,
                 animalShelters: [ ...copyOfShelters ]
             }
+        case 'UPDATE_SHELTER_IMG':
+        foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter_id)
+        foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+        copyOfShelters = state.animalShelters
+        copyOfShelter = { ...foundShelter, items: [ ...foundShelter.items, action.payload ] }
+        copyOfShelters[foundShelterIndex] = copyOfShelter
+        return {
+            ...state,
+            animalShelters: [ ...copyOfShelters ]
+        }
         default:
             return state
     }

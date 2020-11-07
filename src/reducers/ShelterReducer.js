@@ -8,6 +8,7 @@ let initialState = {
     token: '',
     animals: [],
     role: '',
+    image: '',
     donations_received: 0
 }
 
@@ -24,7 +25,13 @@ const shelterReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 role: action.payload.role,
                 donations_received: action.payload.user.donations_received,
-                animals: action.payload.user.animals
+                animals: action.payload.user.animals,
+                image: action.payload.user.items[action.payload.user.items.length-1].image
+            }
+        case 'UPDATE_SHELTER_IMG':
+            return {
+                ...state,
+                image: action.payload.image
             }
         case 'ADD_ANIMAL':
             return {
@@ -52,7 +59,7 @@ const shelterReducer = (state = initialState, action) => {
                         id: action.payload.id,
                         capitalized_name: action.payload.capitalized_name,
                         capitalized_species: action.payload.capitalized_species,
-                        description: action.payload.description
+                        description: action.payload.description,
                     }
                 } else {
                     return animal
