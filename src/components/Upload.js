@@ -43,8 +43,6 @@ class NewItemForm extends React.Component {
                 this.props.updateImg(imgObj)
             })
         }
-        // need credit card method to update animal instance
-        // might need to go through reducer as well to update the other end
     }
 
     render(){

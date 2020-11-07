@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Form, TextArea } from 'semantic-ui-react'
 import { addAnimal } from '../actions/shelters'
-import NewItemForm from './Upload'
 
 class AddAnimalForm extends React.Component {
 

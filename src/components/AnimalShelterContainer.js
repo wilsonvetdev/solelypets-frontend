@@ -8,11 +8,13 @@ function AnimalShelterContainer(props) {
     let arrayOfShelterComponents = props.animalShelters.map(shelter => {
         return(
             <Card centered key={shelter.id}>
-
                 <Image 
                     src={
-                        shelter.items.length === 0 ? twobirds :
-                        shelter.items[shelter.items.length-1].image} 
+                        shelter.items 
+                        ? 
+                        shelter.items[shelter.items.length-1].image 
+                        :
+                        twobirds } 
                     wrapped ui={false} 
                     
                 />   
