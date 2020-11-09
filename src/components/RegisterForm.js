@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid } from 'semantic-ui-react'
+import { Form, Grid, Segment, Header } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
 
 class RegisterForm extends React.Component {
@@ -44,6 +44,8 @@ class RegisterForm extends React.Component {
     render(){
         const { first_name, last_name, email, password } = this.state
         return(
+            <Segment>
+            <Header color='teal' textAlign='center'>Register A User</Header>
             <Grid columns={3}>
                 <Grid.Row>
                 <Grid.Column></Grid.Column>
@@ -74,6 +76,7 @@ class RegisterForm extends React.Component {
                             placeholder='Password'
                             name='password'
                             value={password}
+                            type='password'
                             onChange={this.handleChange}
                         />
                         </Form.Group>
@@ -84,6 +87,8 @@ class RegisterForm extends React.Component {
                 </Grid.Column>
                 </Grid.Row>
             </Grid>
+
+            </Segment>
         )
     }
 }

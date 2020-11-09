@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid } from 'semantic-ui-react'
+import { Form, Segment, Header } from 'semantic-ui-react'
 import { addShelter } from '../actions/animalShelters'
 import { setShelterInfo } from '../actions/shelters'
 
@@ -55,10 +55,8 @@ class ShelterRegisterForm extends React.Component {
     render(){
         const { first_name, last_name, name, email, password, address, city, state } = this.state
         return(
-            <Grid columns={3}>
-                <Grid.Row>
-                <Grid.Column></Grid.Column>
-                <Grid.Column>
+            <Segment>
+                <Header color='teal'>Register An Animal Shelter Here</Header>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group>
                         <Form.Input
@@ -111,16 +109,16 @@ class ShelterRegisterForm extends React.Component {
                             placeholder='Password'
                             name='password'
                             value={password}
+                            type='password'
                             onChange={this.handleChange}
                         />
                         </Form.Group>
                         <Form.Group>
-                        <Form.Button content='Log In' />
+                        <Form.Button content='Register' />
                         </Form.Group>            
                     </Form>
-                </Grid.Column>
-                </Grid.Row>
-            </Grid>
+            </Segment>
+
         )
     }
 }

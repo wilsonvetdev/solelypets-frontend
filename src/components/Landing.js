@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Header, Segment, Container } from 'semantic-ui-react'
+import { Button, Header, Segment } from 'semantic-ui-react'
 
 function Landing() {
     return(

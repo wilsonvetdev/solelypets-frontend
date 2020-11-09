@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Button, Header, Divider, Image, Segment } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
@@ -58,5 +59,8 @@ class AnimalShelter extends React.Component{
     }
 }
 
+const mapStateToProps = state => {
+    
+}
 
-export default AnimalShelter
+export default connect(mapStateToProps)(AnimalShelter)

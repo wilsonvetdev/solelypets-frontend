@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Image, Segment, Card, Divider, Grid } from 'semantic-ui-react'
+import { Header, Image, Segment, Divider, Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
