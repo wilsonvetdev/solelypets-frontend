@@ -45,23 +45,19 @@ class AddAnimalForm extends React.Component {
         let { name, species, description } = this.state
         return(
             <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
                 <Form.Input
                     placeholder='Name'
                     name='name'
                     value={name}
                     onChange={this.handleChange}
                 />
-                </Form.Group>
-                <Form.Group>
                 <Form.Input
                     placeholder='Species'
                     name='species'
                     value={species}
                     onChange={this.handleChange}
                 />
-                </Form.Group>
-                <Form.Group>
+
                 <Form.Field
                     control={TextArea}
                     placeholder='Description'
@@ -69,10 +65,7 @@ class AddAnimalForm extends React.Component {
                     value={description}
                     onChange={this.handleChange}
                 />
-                </Form.Group>
-                <Form.Group>
                 <Form.Button content='Add Animal' />
-                </Form.Group>            
             </Form>
         )
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Image } from 'semantic-ui-react'
+import { Header, Image, Segment, Card, Divider, Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
@@ -15,29 +15,42 @@ class ShelterHome extends React.Component {
     render(){
         let { first_name, last_name, name, email, full_address, donations_received, animals, image } = this.props
         return(
-            <div>
-                <Header>Logged in as: {name}</Header>
-                {this.state.image ?
-                        <Image src={this.state.image} size='small'/>
-                        :
-                        <Image src={image} size='small'/>
-                }
-                <NewItemForm updateImg={this.props.updateImg} />
-                <Header>Account Details:</Header>
-                <ul>
-                    <li>Point of Contact: {last_name}, {first_name}</li>
-                    <li>Email: {email}</li>
-                    <li>Address: {full_address}</li>
-                    <li>Donations Received: ${donations_received} </li>
-                </ul>
-                <Header>Your List of Animals:</Header>
-                <div>
-                    <AddAnimalForm />
-                </div>
-                <div>
-                    <AnimalContainer animals={animals} />
-                </div>
-            </div>
+            <Segment>
+                <Header color='teal'>Logged in as: {name}</Header>
+                <Segment>
+                <Grid columns={2} relaxed='very'>
+                    <Grid.Column>
+                        {this.state.image ?
+                                <Image src={this.state.image}/>
+                                :
+                                <Image src={image}/>
+                        }
+                            <NewItemForm updateImg={this.props.updateImg} />
+                            <Header>Account Details:</Header>
+                            <ul>
+                                <li>Point of Contact: {last_name}, {first_name}</li>
+                                <li>Email: {email}</li>
+                                <li>Address: {full_address}</li>
+                                <li>Donations Received: ${donations_received} </li>
+                            </ul>
+                    </Grid.Column>
+
+                    <Grid.Column verticalAlign='middle'>
+                            <Header>Use this form to add an animal</Header>
+                            <AddAnimalForm />
+                    </Grid.Column>
+                </Grid>
+
+                <Divider vertical>Or</Divider>
+                </Segment>
+                
+                <Divider />
+
+                <Header textAlign='center'>Your List of Animals:</Header>
+                <AnimalContainer animals={animals} />
+
+
+            </Segment>
         )
     }
 }

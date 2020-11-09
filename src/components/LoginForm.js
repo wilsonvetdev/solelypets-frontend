@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
             .then(userInfo => {
                 this.props.setUserInfo(userInfo)
                 localStorage.token = userInfo.token
-                this.props.history.push('/animal_shelters')
+                this.props.history.push('/user_home')
             })
         }else{
             fetch('http://localhost:3000/shelter_login', {

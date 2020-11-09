@@ -47,14 +47,11 @@ class NewItemForm extends React.Component {
 
     render(){
         return (
-            <div className="form">
-                <Form onSubmit={this.onSubmit}>
-                    <label>Image Upload</label>
-                    <Form.Input type="file" name="image" onChange={this.onChange}/>
-                    <br/>
-                    <Button content='Upload' type="submit" />
-                </Form>
-            </div>
+            <Form onSubmit={this.onSubmit}>
+                <label>Upload a new image</label>
+                <Form.Input type="file" name="image" onChange={this.onChange}/>
+                <Button content='Upload' type="submit" />
+            </Form>
         )
     }
 }

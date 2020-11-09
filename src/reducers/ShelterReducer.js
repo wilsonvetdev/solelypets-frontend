@@ -69,6 +69,8 @@ const shelterReducer = (state = initialState, action) => {
                 ...state,
                 animals: copyOfAnimals
             }
+        case 'LOGOUT':
+            return initialState
         default:
             return state
     }

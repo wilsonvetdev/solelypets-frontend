@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Header, Divider, Image } from 'semantic-ui-react'
+import { Button, Header, Divider, Image, Segment } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
 
@@ -45,7 +45,7 @@ class AnimalShelter extends React.Component{
                     </li>
         })
         return(
-            <div>
+            <Segment>
                 <Header size='huge' color='teal'>Shelter Name: {name}</Header>
                 <h3>Email: {email}</h3>
                 <h3>Address: {full_address} </h3>
@@ -53,7 +53,7 @@ class AnimalShelter extends React.Component{
                 <ul>
                     {listOfAnimals}
                 </ul>
-            </div>
+            </Segment>
         )
     }
 }

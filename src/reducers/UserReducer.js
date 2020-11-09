@@ -24,6 +24,8 @@ const userReducer = (state = initialState, action) => {
                 total_donations_amount: action.payload.user.total_donations_amount,
                 comments: action.payload.user.comments
             }
+        case 'LOGOUT':
+            return initialState
         default:
             return state
     }
