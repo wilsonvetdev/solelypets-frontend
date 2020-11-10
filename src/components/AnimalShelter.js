@@ -2,10 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-react'
 import defaultImg from '../images/defaultImg.png'
+import DonationModal from './DonationModal'
 
 class AnimalShelter extends React.Component{
 
-    handleClick = event => {
+    createCheckOut = (amount) => {
         const stripe = window.Stripe(process.env.REACT_APP_STRIPE_API_KEY)
         fetch('http://localhost:3000/create-checkout-session', {
             method: 'POST',
@@ -14,7 +15,8 @@ class AnimalShelter extends React.Component{
                 'Authorization': localStorage.token
             },
             body: JSON.stringify({
-                animal_shelter_id: this.props.shelter.id
+                animal_shelter_id: this.props.shelter.id,
+                amount: amount
             })
         })
         .then(response => response.json())
@@ -64,8 +66,9 @@ class AnimalShelter extends React.Component{
                 {
                     this.props.shelterInfo.role ? null 
                     :
-                    <Button content='Donate $5' onClick={this.handleClick} />
+                    <DonationModal createCheckOut={this.createCheckOut}/>
                 }
+                {/* <Button content='Donate $5' onClick={this.handleClick} /> */}
                 <Divider></Divider>
                 <Header size='huge' color='teal'>
                 <Icon name='paw' />
