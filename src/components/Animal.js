@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider, Form, Image, Item } from 'semantic-ui-react'
+import { Button, Divider, Form, Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { deleteAnimal, updateAnimal, updateAnimalImg } from '../actions/shelters'
 import NewItemForm from './Upload'

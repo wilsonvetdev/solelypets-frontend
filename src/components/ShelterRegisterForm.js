@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Segment, Header } from 'semantic-ui-react'
+import { Form, Segment, Header, Grid, Image } from 'semantic-ui-react'
 import { addShelter } from '../actions/animalShelters'
 import { setShelterInfo } from '../actions/shelters'
-
+import sloth from '../images/sloth.jpg'
 
 class ShelterRegisterForm extends React.Component {
 
@@ -56,9 +56,13 @@ class ShelterRegisterForm extends React.Component {
         const { first_name, last_name, name, email, password, address, city, state } = this.state
         return(
             <Segment>
+            <Grid columns={2} relaxed='very' stackable>
+                <Grid.Column>
+                <Image centered size='large' src={sloth}/>
+                </Grid.Column>
+                <Grid.Column verticalAlign='middle'>
                 <Header color='teal'>Register An Animal Shelter Here</Header>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Group>
                         <Form.Input
                             placeholder='First Name'
                             name='first_name'
@@ -77,8 +81,6 @@ class ShelterRegisterForm extends React.Component {
                             value={name}
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
                         <Form.Input
                             placeholder='Address'
                             name='address'
@@ -97,8 +99,6 @@ class ShelterRegisterForm extends React.Component {
                             value={state}
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
                         <Form.Input
                             placeholder='Email'
                             name='email'
@@ -112,13 +112,11 @@ class ShelterRegisterForm extends React.Component {
                             type='password'
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
-                        <Form.Button content='Register' />
-                        </Form.Group>            
+                        <Form.Button content='Register' />        
                     </Form>
+                </Grid.Column>
+                </Grid>
             </Segment>
-
         )
     }
 }

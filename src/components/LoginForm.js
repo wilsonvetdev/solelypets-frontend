@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid, Select, Segment, Header, Divider, Container, Button } from 'semantic-ui-react'
+import { Form, Grid, Select, Segment, Header, Divider, Image, Button } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
 import { setShelterInfo } from '../actions/shelters'
+import pupsinfield from '../images/pupsinfield.jpg'
 
 class LoginForm extends React.Component {
 
@@ -74,11 +75,10 @@ class LoginForm extends React.Component {
             <Segment>
             <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
-                <iframe src="https://giphy.com/embed/13ByqbM0hgfN7y" width="480" height="480" frameBorder="0" className="giphy-embed" allowFullScreen>
-                </iframe>
+                <Image centered size='large' src={pupsinfield}/>
                 </Grid.Column>
 
-                <Grid.Column>
+                <Grid.Column verticalAlign='middle'>
                     <Header color='teal' textAlign='center'>Log In Here</Header>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Input
@@ -105,7 +105,7 @@ class LoginForm extends React.Component {
 
             </Grid>
 
-            <Divider vertical />
+            <Divider vertical content='🐶' />
             </Segment>
         )
     }

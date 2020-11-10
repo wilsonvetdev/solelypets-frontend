@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid, Segment, Header } from 'semantic-ui-react'
+import { Form, Grid, Segment, Header, Image } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
+import fieldwdeers from '../images/fieldwdeers.jpg'
 
 class RegisterForm extends React.Component {
 
@@ -45,13 +46,13 @@ class RegisterForm extends React.Component {
         const { first_name, last_name, email, password } = this.state
         return(
             <Segment>
-            <Header color='teal' textAlign='center'>Register A User</Header>
-            <Grid columns={3}>
-                <Grid.Row>
-                <Grid.Column></Grid.Column>
+            <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
+                <Image centered size='large' src={fieldwdeers}/>
+                </Grid.Column>
+                <Grid.Column verticalAlign='middle'>
+                    <Header color='teal' textAlign='center'>Register A User</Header>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Group>
                         <Form.Input
                             placeholder='First Name'
                             name='first_name'
@@ -64,8 +65,6 @@ class RegisterForm extends React.Component {
                             value={last_name}
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
                         <Form.Input
                             placeholder='Email'
                             name='email'
@@ -79,15 +78,10 @@ class RegisterForm extends React.Component {
                             type='password'
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
-                        <Form.Button content='Log In' />
-                        </Form.Group>            
+                        <Form.Button content='Log In' />          
                     </Form>
                 </Grid.Column>
-                </Grid.Row>
             </Grid>
-
             </Segment>
         )
     }
