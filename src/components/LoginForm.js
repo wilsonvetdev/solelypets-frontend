@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid, Select } from 'semantic-ui-react'
+import { Form, Grid, Select, Segment, Header } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
 import { setShelterInfo } from '../actions/shelters'
 
@@ -71,6 +71,8 @@ class LoginForm extends React.Component {
             {key: 'animal_shelter', value: 'animal_shelter', text: 'Animal Shelter'}
         ]
         return(
+            <Segment>
+            <Header color='teal' textAlign='center'>Log In Here</Header>
             <Grid columns={3}>
                 <Grid.Row>
                 <Grid.Column></Grid.Column>
@@ -87,17 +89,19 @@ class LoginForm extends React.Component {
                             placeholder='Password'
                             name='password'
                             value={password}
+                            type='password'
                             onChange={this.handleChange}
                         />
                         </Form.Group>
                         <Form.Group>
-                        <Form.Button content='Log In' />
                         <Select placeholder='Select User Type' options={userTypes} onChange={this.handleSelect} />
+                        <Form.Button content='Log In' />
                         </Form.Group>            
                     </Form>
                 </Grid.Column>
                 </Grid.Row>
             </Grid>
+            </Segment>
         )
     }
 }

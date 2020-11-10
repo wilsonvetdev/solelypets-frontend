@@ -31,7 +31,6 @@ class AnimalShelter extends React.Component{
         })
         .catch(error => {console.log('ERROR:', error)})
     }
-    
     render() {
         let { name, full_address, email, animals  } = this.props.shelter
         let listOfAnimals = animals.map(animal => {
@@ -47,10 +46,14 @@ class AnimalShelter extends React.Component{
         })
         return(
             <Segment>
-                <Header size='huge' color='teal'>Shelter Name: {name}</Header>
+                <Header size='huge' color='teal'> {name}</Header>
                 <h3>Email: {email}</h3>
                 <h3>Address: {full_address} </h3>
-                <Button content='Donate $5' onClick={this.handleClick} />
+                {
+                    this.props.shelterInfo.role ? null 
+                    :
+                    <Button content='Donate $5' onClick={this.handleClick} />
+                }
                 <ul>
                     {listOfAnimals}
                 </ul>
@@ -60,7 +63,9 @@ class AnimalShelter extends React.Component{
 }
 
 const mapStateToProps = state => {
-    
+    return {
+        shelterInfo: state.shelterInfo
+    }
 }
 
 export default connect(mapStateToProps)(AnimalShelter)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Divider, Form, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { deleteAnimal, updateAnimal } from '../actions/shelters'
+import { deleteAnimal, updateAnimal, updateAnimalImg } from '../actions/shelters'
 import NewItemForm from './Upload'
 
 
@@ -103,18 +103,18 @@ class Animal extends React.Component {
                     :
                     <div>
                         <p>Name: {capitalized_name}</p>
-                        <p>Type: {capitalized_species}</p>
-                        <p>Description: {description}</p>
                         {this.state.image ?
                         <Image src={this.state.image} size='small'/>
                         :
-                        <Image src={items.length === 0 ? null : items[items.length-1].image} size='small'/>
+                        <Image src={items.length !== 0 ? items[items.length-1].image : null} size='small'/>
                         }
+                        <p>Type: {capitalized_species}</p>
+                        <p>Description: {description}</p>
                     </div>
                 }
                 <Button content='Delete' onClick={this.handleDelete} />
                 <Button content='Edit' onClick={this.toggleEdit} />
-                <NewItemForm animal_id={id} getImg={this.getImg} />
+                <NewItemForm animal_id={id} getImg={this.getImg} updateAnimalImg={this.props.updateAnimalImg}/>
                 <Divider></Divider>
             </li>
         )
@@ -124,7 +124,8 @@ class Animal extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         deleteAnimal: (returnedObj) => dispatch(deleteAnimal(returnedObj)),
-        updateAnimal: (returnedObj) => dispatch(updateAnimal(returnedObj))
+        updateAnimal: (returnedObj) => dispatch(updateAnimal(returnedObj)),
+        updateAnimalImg: (returnedObj) => dispatch(updateAnimalImg(returnedObj))
     }
 }
 

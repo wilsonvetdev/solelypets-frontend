@@ -13,6 +13,7 @@ let initialState = {
 }
 
 const shelterReducer = (state = initialState, action) => {
+    let copyOfAnimals;
     switch (action.type) {
         case 'SET_SHELTER_INFO':
             return {
@@ -42,7 +43,8 @@ const shelterReducer = (state = initialState, action) => {
                         id: action.payload.id,
                         capitalized_name: action.payload.capitalized_name,
                         capitalized_species: action.payload.capitalized_species,
-                        description: action.payload.description
+                        description: action.payload.description,
+                        items: action.payload.items
                     }
                 ]
             }
@@ -53,13 +55,29 @@ const shelterReducer = (state = initialState, action) => {
                 animals: filteredAnimals
             }
         case 'UPDATE_ANIMAL':
-            let copyOfAnimals = state.animals.map(animal => {
+            copyOfAnimals = state.animals.map(animal => {
                 if(animal.id === action.payload.id) {
                     return {
                         id: action.payload.id,
                         capitalized_name: action.payload.capitalized_name,
                         capitalized_species: action.payload.capitalized_species,
                         description: action.payload.description,
+                        items: action.payload.items
+                    }
+                } else {
+                    return animal
+                }
+            })
+            return {
+                ...state,
+                animals: copyOfAnimals
+            }
+        case 'UPDATE_ANIMAL_IMG':
+            copyOfAnimals = state.animals.map(animal => {
+                if(animal.id === action.payload.item.animal_id) {
+                    return {
+                        ...animal,
+                        items: [ ...animal.items, action.payload.item ]
                     }
                 } else {
                     return animal

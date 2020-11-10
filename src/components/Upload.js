@@ -30,6 +30,7 @@ class NewItemForm extends React.Component {
             .then(response => response.json())
             .then(imgObj => {
                 this.props.getImg(imgObj)
+                this.props.updateAnimalImg(imgObj)
             })
         } else {
             console.log('logic here for shelter image')

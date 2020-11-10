@@ -26,6 +26,13 @@ export const updateAnimal = (animalInfo) => {
     }
 }
 
+export const updateAnimalImg = (imgInfo) => {
+    return {
+        type: 'UPDATE_ANIMAL_IMG',
+        payload: imgInfo
+    }
+}
+
 export const updateImg = (imgInfo) => {
     return {
         type: 'UPDATE_SHELTER_IMG',
