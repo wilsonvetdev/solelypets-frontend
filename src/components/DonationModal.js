@@ -22,6 +22,7 @@ class DonationModal extends React.Component{
     
         return(
             <Modal
+                size='tiny'
                 onClose={this.toggleOpen}
                 onOpen={this.toggleOpen}
                 open={this.state.open}
@@ -60,3 +61,4 @@ class DonationModal extends React.Component{
 }
 
 export default DonationModal
+
