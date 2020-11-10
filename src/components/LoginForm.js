@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid, Select, Segment, Header } from 'semantic-ui-react'
+import { Form, Grid, Select, Segment, Header, Divider, Container, Button } from 'semantic-ui-react'
 import { setUserInfo } from '../actions/users'
 import { setShelterInfo } from '../actions/shelters'
 
@@ -72,35 +72,40 @@ class LoginForm extends React.Component {
         ]
         return(
             <Segment>
-            <Header color='teal' textAlign='center'>Log In Here</Header>
-            <Grid columns={3}>
-                <Grid.Row>
-                <Grid.Column></Grid.Column>
+            <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
+                <iframe src="https://giphy.com/embed/13ByqbM0hgfN7y" width="480" height="480" frameBorder="0" className="giphy-embed" allowFullScreen>
+                </iframe>
+                </Grid.Column>
+
+                <Grid.Column>
+                    <Header color='teal' textAlign='center'>Log In Here</Header>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Group>
                         <Form.Input
+                            icon='user'
+                            iconPosition='left'
                             placeholder='Email'
                             name='email'
                             value={email}
                             onChange={this.handleChange}
                         />
                         <Form.Input
+                            icon='lock'
+                            iconPosition='left'
                             placeholder='Password'
                             name='password'
                             value={password}
                             type='password'
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
                         <Select placeholder='Select User Type' options={userTypes} onChange={this.handleSelect} />
-                        <Form.Button content='Log In' />
-                        </Form.Group>            
+                        <Button floated='right' content='Log In' />
                     </Form>
                 </Grid.Column>
-                </Grid.Row>
+
             </Grid>
+
+            <Divider vertical />
             </Segment>
         )
     }

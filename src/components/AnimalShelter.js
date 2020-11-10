@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Header, Divider, Image, Segment } from 'semantic-ui-react'
+import { Button, Header, Divider, Image, Segment, Item } from 'semantic-ui-react'
 
 class AnimalShelter extends React.Component{
 
@@ -32,23 +32,28 @@ class AnimalShelter extends React.Component{
         .catch(error => {console.log('ERROR:', error)})
     }
     render() {
-        let { name, full_address, email, animals  } = this.props.shelter
+        let { name, full_address, email, animals, items  } = this.props.shelter
+        console.log(this.props.shelter)
         let listOfAnimals = animals.map(animal => {
-            return <li key={animal.id}>
-                        <div>   
-                            <p>Name: {animal.capitalized_name}</p>
+            return <Item.Group key={animal.id}>
+                        <Item>   
+                            <Item.Image src={animal.items.length === 0 ? null : animal.items[animal.items.length-1].image} size='small'/>
+                            <Item.Content>
+                            <Item.Header>{animal.capitalized_name}</Item.Header>
                             <p>Type: {animal.capitalized_species}</p>
                             <p>Description: {animal.description}</p>
-                            <Image src={animal.items.length === 0 ? null : animal.items[animal.items.length-1].image} size='small'/>
-                        </div>
+                            </Item.Content>
+                        </Item>
                         <Divider />
-                    </li>
+                    </Item.Group>
         })
         return(
             <Segment>
                 <Header size='huge' color='teal'> {name}</Header>
+                <Image size='medium' src={items[items.length - 1].image} />
                 <h3>Email: {email}</h3>
                 <h3>Address: {full_address} </h3>
+                <Divider></Divider>
                 {
                     this.props.shelterInfo.role ? null 
                     :

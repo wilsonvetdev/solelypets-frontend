@@ -32,7 +32,7 @@ const shelterReducer = (state = initialState, action) => {
         case 'UPDATE_SHELTER_IMG':
             return {
                 ...state,
-                image: action.payload.image
+                image: action.payload.item.image
             }
         case 'ADD_ANIMAL':
             return {
