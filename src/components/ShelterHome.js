@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Image, Segment, Divider, Grid } from 'semantic-ui-react'
+import { Header, Image, Segment, Divider, Grid, List, Statistic } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import AddAnimalForm from './AddAnimalForm'
 import AnimalContainer from './AnimalContainer'
@@ -21,18 +21,50 @@ class ShelterHome extends React.Component {
                 <Grid columns={2} relaxed='very'>
                     <Grid.Column>
                         {this.state.image ?
-                                <Image src={this.state.image}/>
+                                <Image rounded src={this.state.image}/>
                                 :
-                                <Image src={image}/>
+                                <Image rounded src={image}/>
                         }
                             <NewItemForm updateImg={this.props.updateImg} />
                             <Header>Account Details:</Header>
-                            <ul>
-                                <li>Point of Contact: {last_name}, {first_name}</li>
-                                <li>Email: {email}</li>
-                                <li>Address: {full_address}</li>
-                                <li>Donations Received: ${donations_received} </li>
-                            </ul>
+                            <List size='large'>
+                                <List.Item>
+                                    <List.Icon name='users' />
+                                    <List.Content>
+                                        Point of Contact: {last_name}, {first_name}
+                                    </List.Content>
+                                </List.Item>
+                                <List.Item>
+                                    <List.Icon name='mail' />
+                                    <List.Content>
+                                        Email: {email}
+                                    </List.Content>
+                                </List.Item>
+                                <List.Item>
+                                    <List.Icon name='marker' />
+                                    <List.Content>
+                                        Address: {full_address}
+                                    </List.Content>
+                                </List.Item>
+                            </List>
+
+                        <Statistic>
+                            <Statistic.Value>
+                                ${donations_received} 
+                            </Statistic.Value>
+                            <Statistic.Label>
+                                Donations Received
+                            </Statistic.Label>
+                        </Statistic>
+                        <Statistic>
+                            <Statistic.Value>
+                                {animals.length} 
+                            </Statistic.Value>
+                            <Statistic.Label>
+                                Animals
+                            </Statistic.Label>
+                        </Statistic>
+
                     </Grid.Column>
 
                     <Grid.Column verticalAlign='middle'>

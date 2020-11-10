@@ -4,7 +4,7 @@ import { Link, Switch, Route, Redirect } from 'react-router-dom'
 import { setAnimalShelters } from './actions/animalShelters'
 import { setUserInfo } from './actions/users'
 import { setShelterInfo } from './actions/shelters'
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Loader } from 'semantic-ui-react'
 import AnimalShelterContainer from './components/AnimalShelterContainer'
 import AnimalShelter from './components/AnimalShelter'
 import LoginForm from './components/LoginForm'
@@ -21,7 +21,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/animal_shelters')
     .then(response => response.json())
     .then(sheltersArray => {
-      this.props.setAnimalShelters(sheltersArray)
+        this.props.setAnimalShelters(sheltersArray)
     })
 
     if(localStorage.token){
@@ -50,7 +50,7 @@ class App extends React.Component {
       if(foundShelter){
         return <AnimalShelter {...routerProps} shelter={foundShelter} />
       } else {
-        return <p>404 page</p>
+        return <Loader active size='big' inline='centered' />
       }
   }
 
@@ -68,7 +68,7 @@ class App extends React.Component {
         </Container>
 
         <Container>
-        <MenuItem />
+          <MenuItem />
         </Container>
 
         <Switch>

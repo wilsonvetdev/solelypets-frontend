@@ -75,7 +75,7 @@ class LoginForm extends React.Component {
             <Segment>
             <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
-                <Image centered size='large' src={pupsinfield}/>
+                <Image rounded centered size='large' src={pupsinfield}/>
                 </Grid.Column>
 
                 <Grid.Column verticalAlign='middle'>

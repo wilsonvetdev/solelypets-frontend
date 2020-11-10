@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { Form, Segment, Header, Grid, Image } from 'semantic-ui-react'
 import { addShelter } from '../actions/animalShelters'
 import { setShelterInfo } from '../actions/shelters'
-import sloth from '../images/sloth.jpg'
+import koala from '../images/koala.jpg'
 
 class ShelterRegisterForm extends React.Component {
 
@@ -58,7 +58,7 @@ class ShelterRegisterForm extends React.Component {
             <Segment>
             <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
-                <Image centered size='large' src={sloth}/>
+                <Image rounded centered size='large' src={koala}/>
                 </Grid.Column>
                 <Grid.Column verticalAlign='middle'>
                 <Header color='teal'>Register An Animal Shelter Here</Header>

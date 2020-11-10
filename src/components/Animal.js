@@ -3,6 +3,7 @@ import { Button, Divider, Form, Item } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { deleteAnimal, updateAnimal, updateAnimalImg } from '../actions/shelters'
 import NewItemForm from './Upload'
+import defaultImg from '../images/defaultImg.png'
 
 
 class Animal extends React.Component {
@@ -106,9 +107,9 @@ class Animal extends React.Component {
                     <Item.Group relaxed>
                     <Item>
                         {this.state.image ?
-                        <Item.Image src={this.state.image} size='small'/>
+                        <Item.Image circular src={this.state.image} size='medium'/>
                         :
-                        <Item.Image src={items.length !== 0 ? items[items.length-1].image : null} size='small'/>
+                        <Item.Image circular src={items.length !== 0 ? items[items.length-1].image : defaultImg} size='medium'/>
                         }
                         <Item.Content>
                         <Item.Header>{capitalized_name}</Item.Header>

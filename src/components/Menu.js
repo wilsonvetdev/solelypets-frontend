@@ -7,7 +7,7 @@ import { logOutUser } from '../actions/users'
 class MenuItem extends Component {
 
     state = { 
-        activeItem: 'home'
+        activeItem: 'shelters'
     }
 
     handleItemClick = (e, { name }) => {

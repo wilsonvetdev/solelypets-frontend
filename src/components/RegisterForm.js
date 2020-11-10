@@ -48,7 +48,7 @@ class RegisterForm extends React.Component {
             <Segment>
             <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
-                <Image centered size='large' src={fieldwdeers}/>
+                <Image rounded centered size='large' src={fieldwdeers}/>
                 </Grid.Column>
                 <Grid.Column verticalAlign='middle'>
                     <Header color='teal' textAlign='center'>Register A User</Header>

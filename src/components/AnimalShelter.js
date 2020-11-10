@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Header, Divider, Image, Segment, Item } from 'semantic-ui-react'
+import { Button, Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-react'
+import defaultImg from '../images/defaultImg.png'
 
 class AnimalShelter extends React.Component{
 
@@ -33,11 +34,10 @@ class AnimalShelter extends React.Component{
     }
     render() {
         let { name, full_address, email, animals, items  } = this.props.shelter
-        console.log(this.props.shelter)
         let listOfAnimals = animals.map(animal => {
             return <Item.Group key={animal.id}>
                         <Item>   
-                            <Item.Image src={animal.items.length === 0 ? null : animal.items[animal.items.length-1].image} size='small'/>
+                            <Item.Image circular size='medium' src={animal.items.length === 0 ? defaultImg : animal.items[animal.items.length-1].image}/>
                             <Item.Content>
                             <Item.Header>{animal.capitalized_name}</Item.Header>
                             <p>Type: {animal.capitalized_species}</p>
@@ -50,18 +50,34 @@ class AnimalShelter extends React.Component{
         return(
             <Segment>
                 <Header size='huge' color='teal'> {name}</Header>
-                <Image size='medium' src={items[items.length - 1].image} />
-                <h3>Email: {email}</h3>
-                <h3>Address: {full_address} </h3>
-                <Divider></Divider>
+                <Image rounded size='medium' src={items[items.length - 1].image} />
+                <List size='huge'>
+                    <List.Item>
+                        <List.Icon name='mail' />
+                        <List.Content>{email}</List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <List.Icon name='marker' />
+                        <List.Content>{full_address}</List.Content>
+                    </List.Item>
+                </List>
                 {
                     this.props.shelterInfo.role ? null 
                     :
                     <Button content='Donate $5' onClick={this.handleClick} />
                 }
+                <Divider></Divider>
+                <Header size='huge' color='teal'>
+                <Icon name='paw' />
+                Our Animals
+                </Header>
+                {listOfAnimals.length ?
                 <ul>
                     {listOfAnimals}
                 </ul>
+                :
+                <Header>This shelter haven't uploaded any animals yet. </Header>
+                }
             </Segment>
         )
     }
