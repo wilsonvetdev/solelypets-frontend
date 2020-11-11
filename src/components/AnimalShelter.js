@@ -1,9 +1,12 @@
 import React from 'react'
-import { Button, Header, Divider, Image } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-react'
+import defaultImg from '../images/defaultImg.png'
+import DonationModal from './DonationModal'
 
 class AnimalShelter extends React.Component{
 
-    handleClick = event => {
+    createCheckOut = (amount) => {
         const stripe = window.Stripe(process.env.REACT_APP_STRIPE_API_KEY)
         fetch('http://localhost:3000/create-checkout-session', {
             method: 'POST',
@@ -12,7 +15,8 @@ class AnimalShelter extends React.Component{
                 'Authorization': localStorage.token
             },
             body: JSON.stringify({
-                animal_shelter_id: this.props.shelter.id
+                animal_shelter_id: this.props.shelter.id,
+                amount: amount
             })
         })
         .then(response => response.json())
@@ -30,33 +34,61 @@ class AnimalShelter extends React.Component{
         })
         .catch(error => {console.log('ERROR:', error)})
     }
-    
     render() {
-        let { name, full_address, email, animals  } = this.props.shelter
+        let { name, full_address, email, animals, items  } = this.props.shelter
         let listOfAnimals = animals.map(animal => {
-            return <li key={animal.id}>
-                        <div>   
-                            <p>Name: {animal.capitalized_name}</p>
+            return <Item.Group key={animal.id}>
+                        <Item>   
+                            <Item.Image circular size='medium' src={animal.items.length === 0 ? defaultImg : animal.items[animal.items.length-1].image}/>
+                            <Item.Content>
+                            <Item.Header>{animal.capitalized_name}</Item.Header>
                             <p>Type: {animal.capitalized_species}</p>
                             <p>Description: {animal.description}</p>
-                            <Image src={animal.items.length === 0 ? null : animal.items[animal.items.length-1].image} size='small'/>
-                        </div>
+                            </Item.Content>
+                        </Item>
                         <Divider />
-                    </li>
+                    </Item.Group>
         })
         return(
-            <div>
-                <Header size='huge' color='teal'>Shelter Name: {name}</Header>
-                <h3>Email: {email}</h3>
-                <h3>Address: {full_address} </h3>
-                <Button content='Donate $5' onClick={this.handleClick} />
-                <ul>
+            <Segment>
+                <Header size='huge' color='teal'> {name}</Header>
+                <Image rounded size='medium' src={items[items.length - 1].image} />
+                <List size='huge'>
+                    <List.Item>
+                        <List.Icon name='mail' />
+                        <List.Content>{email}</List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <List.Icon name='marker' />
+                        <List.Content>{full_address}</List.Content>
+                    </List.Item>
+                </List>
+                {
+                    this.props.shelterInfo.role ? null 
+                    :
+                    <DonationModal createCheckOut={this.createCheckOut}/>
+                }
+                <Divider></Divider>
+                <Header size='huge' color='teal'>
+                <Icon name='paw' />
+                Our Animals
+                </Header>
+                {listOfAnimals.length ?
+                <List>
                     {listOfAnimals}
-                </ul>
-            </div>
+                </List>
+                :
+                <Header>This shelter haven't uploaded any animals yet. </Header>
+                }
+            </Segment>
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        shelterInfo: state.shelterInfo
+    }
+}
 
-export default AnimalShelter
+export default connect(mapStateToProps)(AnimalShelter)

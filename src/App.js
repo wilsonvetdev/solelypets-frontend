@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link, Switch, Route } from 'react-router-dom'
+import { Link, Switch, Route, Redirect } from 'react-router-dom'
 import { setAnimalShelters } from './actions/animalShelters'
 import { setUserInfo } from './actions/users'
 import { setShelterInfo } from './actions/shelters'
-import { Container, Divider, Header, Grid } from 'semantic-ui-react'
+import { Container, Header, Loader } from 'semantic-ui-react'
 import AnimalShelterContainer from './components/AnimalShelterContainer'
 import AnimalShelter from './components/AnimalShelter'
 import LoginForm from './components/LoginForm'
@@ -13,7 +13,7 @@ import ShelterRegisterForm from './components/ShelterRegisterForm'
 import UserHome from './components/UserHome'
 import ShelterHome from './components/ShelterHome'
 import Landing from './components/Landing'
-import NewItemForm from './components/Upload'
+import MenuItem from './components/Menu'
 
 class App extends React.Component {
 
@@ -21,7 +21,7 @@ class App extends React.Component {
     fetch('http://localhost:3000/animal_shelters')
     .then(response => response.json())
     .then(sheltersArray => {
-      this.props.setAnimalShelters(sheltersArray)
+        this.props.setAnimalShelters(sheltersArray)
     })
 
     if(localStorage.token){
@@ -50,8 +50,12 @@ class App extends React.Component {
       if(foundShelter){
         return <AnimalShelter {...routerProps} shelter={foundShelter} />
       } else {
-        return <p>404 page</p>
+        return <Loader active size='big' inline='centered' />
       }
+  }
+
+  handleLogOut = () => {
+      return <Redirect to='/' />
   }
 
   render(){
@@ -63,28 +67,9 @@ class App extends React.Component {
           </Header>
         </Container>
 
-        <Divider />
-
         <Container>
-          <Grid columns={4} divided textAlign='center'>
-            <Grid.Row>
-              <Grid.Column>
-                <Link to='/user_home'>Home Page</Link>
-              </Grid.Column>
-              <Grid.Column>
-                <Link to='/animal_shelters'>All Animal Shelters</Link>
-              </Grid.Column>
-              <Grid.Column>
-                <Link to='/login'>Log In</Link>
-              </Grid.Column>
-              <Grid.Column>
-                <Link to='/register'>Register</Link>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+          <MenuItem />
         </Container>
-
-        <Divider />
 
         <Switch>
           <Route path='/animal_shelters' exact>
@@ -93,11 +78,11 @@ class App extends React.Component {
           <Route path='/' component={Landing} exact/>
           <Route path='/animal_shelters/:id' render={this.singleShelter} />
           <Route path='/login' component={LoginForm} />
+          <Route path='/logout' render={this.handleLogOut} />
           <Route path='/register' component={RegisterForm} />
           <Route path='/shelter_register' component={ShelterRegisterForm} />
           <Route path='/user_home' component={UserHome} />
           <Route path='/shelter_home' component={ShelterHome} />
-          <Route path='/upload' component={NewItemForm} />
         </Switch>
 
       </Container>
@@ -108,7 +93,8 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return {
     animalShelters: state.animalSheltersInfo.animalShelters,
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    shelterInfo: state.shelterInfo
   }
 }
 
@@ -116,7 +102,7 @@ const mapDispatchToProps = dispatch => {
   return { 
     setAnimalShelters: (sheltersArray) => dispatch(setAnimalShelters(sheltersArray)),
     setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
-    setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo)) 
+    setShelterInfo: (shelterInfo) => dispatch(setShelterInfo(shelterInfo))
   }
 }
 

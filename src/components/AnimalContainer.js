@@ -9,7 +9,6 @@ function AnimalContainer(props) {
 
     return(
         <div>
-            <h1>Animal Container</h1>
             <ul>
                 {listsOfAnimals}
             </ul>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Form, Grid } from 'semantic-ui-react'
+import { Form, Segment, Header, Grid, Image } from 'semantic-ui-react'
 import { addShelter } from '../actions/animalShelters'
 import { setShelterInfo } from '../actions/shelters'
-
+import koala from '../images/koala.jpg'
 
 class ShelterRegisterForm extends React.Component {
 
@@ -55,12 +55,14 @@ class ShelterRegisterForm extends React.Component {
     render(){
         const { first_name, last_name, name, email, password, address, city, state } = this.state
         return(
-            <Grid columns={3}>
-                <Grid.Row>
-                <Grid.Column></Grid.Column>
+            <Segment>
+            <Grid columns={2} relaxed='very' stackable>
                 <Grid.Column>
+                <Image rounded centered size='large' src={koala}/>
+                </Grid.Column>
+                <Grid.Column verticalAlign='middle'>
+                <Header color='teal'>Register An Animal Shelter Here</Header>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Group>
                         <Form.Input
                             placeholder='First Name'
                             name='first_name'
@@ -79,8 +81,6 @@ class ShelterRegisterForm extends React.Component {
                             value={name}
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
                         <Form.Input
                             placeholder='Address'
                             name='address'
@@ -99,8 +99,6 @@ class ShelterRegisterForm extends React.Component {
                             value={state}
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
                         <Form.Input
                             placeholder='Email'
                             name='email'
@@ -111,16 +109,14 @@ class ShelterRegisterForm extends React.Component {
                             placeholder='Password'
                             name='password'
                             value={password}
+                            type='password'
                             onChange={this.handleChange}
                         />
-                        </Form.Group>
-                        <Form.Group>
-                        <Form.Button content='Log In' />
-                        </Form.Group>            
+                        <Form.Button content='Register' />        
                     </Form>
                 </Grid.Column>
-                </Grid.Row>
-            </Grid>
+                </Grid>
+            </Segment>
         )
     }
 }

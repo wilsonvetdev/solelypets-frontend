@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Container, Header, Card, Image } from 'semantic-ui-react'
+import { Segment, Card, Image } from 'semantic-ui-react'
 import twobirds from '../images/twobirds.jpg'
 
 function AnimalShelterContainer(props) {
@@ -21,20 +21,20 @@ function AnimalShelterContainer(props) {
 
                 <Card.Content>
                     <Card.Header>{shelter.name}</Card.Header>
-                <Link to={`/animal_shelters/${shelter.id}`}>
-                view shelter
-                </Link>
+                    <Link to={`/animal_shelters/${shelter.id}`}>
+                    view shelter
+                    </Link>
+                    <Card.Description>{shelter.full_address}</Card.Description>
                 </Card.Content>
             </Card>
         )
     })
     return(
-        <Container>
-            <Header color='teal' size='large'>Animal Shelters</Header>
+        <Segment>
             <Card.Group>
                 {arrayOfShelterComponents}
             </Card.Group>
-        </Container>
+        </Segment>
     )
 }
 

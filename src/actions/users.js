@@ -4,3 +4,9 @@ export const setUserInfo = (userInfo) => {
         payload: userInfo
     }
 }
+
+export const logOutUser = () => {
+    return {
+        type: 'LOGOUT'
+    }
+}

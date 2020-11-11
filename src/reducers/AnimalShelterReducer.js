@@ -7,6 +7,7 @@ const animalShelterReducer = (state = initialState, action) => {
     let foundShelterIndex;
     let copyOfShelters; 
     let copyOfShelter;
+    let copyOfAnimals;
     switch (action.type) {
         case 'SET_ANIMAL_SHELTERS':
             return {
@@ -34,11 +35,12 @@ const animalShelterReducer = (state = initialState, action) => {
             foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter.id)
             foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
             copyOfShelters = state.animalShelters
-            let copyOfAnimals = [ ...foundShelter.animals, {
+            copyOfAnimals = [ ...foundShelter.animals, {
                 id: action.payload.id,
                 capitalized_name: action.payload.capitalized_name,
                 capitalized_species: action.payload.capitalized_species,
-                description: action.payload.description
+                description: action.payload.description,
+                items: action.payload.items
             }]
             copyOfShelter = { ...foundShelter, animals: copyOfAnimals}
             copyOfShelters[foundShelterIndex] = copyOfShelter
@@ -69,7 +71,8 @@ const animalShelterReducer = (state = initialState, action) => {
                         id: action.payload.id,
                         capitalized_name: action.payload.capitalized_name,
                         capitalized_species: action.payload.capitalized_species,
-                        description: action.payload.description
+                        description: action.payload.description,
+                        items: action.payload.items
                     }
                 } else {
                     return animal
@@ -82,15 +85,35 @@ const animalShelterReducer = (state = initialState, action) => {
                 animalShelters: [ ...copyOfShelters ]
             }
         case 'UPDATE_SHELTER_IMG':
-        foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.animal_shelter_id)
-        foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
-        copyOfShelters = state.animalShelters
-        copyOfShelter = { ...foundShelter, items: [ ...foundShelter.items, action.payload ] }
-        copyOfShelters[foundShelterIndex] = copyOfShelter
-        return {
-            ...state,
-            animalShelters: [ ...copyOfShelters ]
-        }
+            foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.item.animal_shelter_id)
+            foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+            copyOfShelters = state.animalShelters
+            copyOfShelter = { ...foundShelter, items: [ ...foundShelter.items, action.payload.item ] }
+            copyOfShelters[foundShelterIndex] = copyOfShelter
+            return {
+                ...state,
+                animalShelters: [ ...copyOfShelters ]
+            }
+        case 'UPDATE_ANIMAL_IMG':
+            foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.shelter_id)
+            foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+            copyOfShelters = state.animalShelters
+            copyOfAnimals = foundShelter.animals.map(animal => {
+                if(animal.id === action.payload.item.animal_id) {
+                    return {
+                        ...animal,
+                        items: [ ...animal.items, {...action.payload.item} ]
+                    }
+                } else {
+                    return animal
+                }
+            })
+            copyOfShelter = { ...foundShelter, animals: copyOfAnimals}
+            copyOfShelters[foundShelterIndex] = copyOfShelter
+            return {
+                ...state,
+                animalShelters: [...copyOfShelters]
+            }
         default:
             return state
     }
