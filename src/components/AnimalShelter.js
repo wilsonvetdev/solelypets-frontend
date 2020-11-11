@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-react'
+import { Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-react'
 import defaultImg from '../images/defaultImg.png'
 import DonationModal from './DonationModal'
 
@@ -68,16 +68,15 @@ class AnimalShelter extends React.Component{
                     :
                     <DonationModal createCheckOut={this.createCheckOut}/>
                 }
-                {/* <Button content='Donate $5' onClick={this.handleClick} /> */}
                 <Divider></Divider>
                 <Header size='huge' color='teal'>
                 <Icon name='paw' />
                 Our Animals
                 </Header>
                 {listOfAnimals.length ?
-                <ul>
+                <List>
                     {listOfAnimals}
-                </ul>
+                </List>
                 :
                 <Header>This shelter haven't uploaded any animals yet. </Header>
                 }

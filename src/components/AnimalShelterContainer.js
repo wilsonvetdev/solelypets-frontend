@@ -21,9 +21,10 @@ function AnimalShelterContainer(props) {
 
                 <Card.Content>
                     <Card.Header>{shelter.name}</Card.Header>
-                <Link to={`/animal_shelters/${shelter.id}`}>
-                view shelter
-                </Link>
+                    <Link to={`/animal_shelters/${shelter.id}`}>
+                    view shelter
+                    </Link>
+                    <Card.Description>{shelter.full_address}</Card.Description>
                 </Card.Content>
             </Card>
         )
