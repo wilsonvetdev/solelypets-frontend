@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { updateShelterInfo } from '../actions/shelters'
-import { Header, Segment, Form, Divider, Button } from 'semantic-ui-react'
+import { Header, Segment, Form, Divider, Button, Message, Grid } from 'semantic-ui-react'
 
 class ShelterSettings extends React.Component {
 
@@ -12,6 +12,16 @@ class ShelterSettings extends React.Component {
         address: this.props.shelterInfo.address,
         city: this.props.shelterInfo.city,
         state: this.props.shelterInfo.state,
+        visible: false
+    }
+
+    handleDismiss = () => {
+        console.log('dismiss')
+        this.setState({ visible: false})
+    }
+
+    makeVisible = () => {
+        this.setState({ visible: true})
     }
 
     handleChange = event => {
@@ -39,14 +49,29 @@ class ShelterSettings extends React.Component {
         .then(response => response.json())
         .then((updatedObj) => {
             this.props.updateShelterInfo(updatedObj)
+            if(updatedObj.token) {
+                this.makeVisible()
+            }
         })
     }
 
     render(){
         return(
             <Segment>
-                <Header size='large' color='teal'>Settings</Header>
+            <Header size='large' color='teal'>Settings</Header>
+                {this.state.visible ? 
+                    <Message
+                    onDismiss={this.handleDismiss}
+                    success
+                    header='Awesome!'
+                    content='You have updated your information successfully.'
+                    />
+                
+                : null}
                 <Divider />
+
+            <Grid centered columns={2}>
+                <Grid.Column>
                 <Form onSubmit={this.handleUpdate}>
                     <Form.Input 
                         label='First Name'
@@ -93,6 +118,8 @@ class ShelterSettings extends React.Component {
                     <Button content='Delete' onClick={this.handleDelete} />
                     <Button content='Edit' onClick={this.handleUpdate} />
                 </Form>
+                </Grid.Column>
+            </Grid>
             </Segment>
         )
     }
