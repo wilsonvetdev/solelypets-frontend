@@ -13,7 +13,7 @@ class ShelterHome extends React.Component {
     }
 
     render(){
-        let { first_name, last_name, name, email, full_address, donations_received, animals, image } = this.props
+        let { first_name, last_name, name, email, full_address, donations_received, animals, image, donations_count } = this.props
         return(
             <Segment>
                 <Header color='teal'>Logged in as: {name}</Header>
@@ -58,6 +58,14 @@ class ShelterHome extends React.Component {
                         </Statistic>
                         <Statistic>
                             <Statistic.Value>
+                                {donations_count} 
+                            </Statistic.Value>
+                            <Statistic.Label>
+                                Donations
+                            </Statistic.Label>
+                        </Statistic>
+                        <Statistic>
+                            <Statistic.Value>
                                 {animals.length} 
                             </Statistic.Value>
                             <Statistic.Label>
@@ -96,7 +104,8 @@ const mapStateToProps = state => {
         full_address: state.shelterInfo.full_address,
         donations_received: state.shelterInfo.donations_received,
         animals: state.shelterInfo.animals,
-        image: state.shelterInfo.image
+        image: state.shelterInfo.image,
+        donations_count: state.shelterInfo.donations_count
     }
 }
 
