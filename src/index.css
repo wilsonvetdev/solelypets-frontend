@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.landing-bg {
+  margin-top: 2%;
+  border-radius: 1%;
+  padding-top: 20%;
+  height: 80vh;
+	background-image: url("./images/widefield.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

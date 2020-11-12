@@ -62,7 +62,7 @@ class App extends React.Component {
     return(
       <Container>
         <Container>
-          <Header size='huge'>
+          <Header size='huge' style={{marginTop: '1%'}}>
             <Link style={{color: '#11B5AC'}} to='/'>SolelyPets</Link>
           </Header>
         </Container>

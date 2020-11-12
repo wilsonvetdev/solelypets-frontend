@@ -1,0 +1,8 @@
+.landing-bg {
+    padding-top: 50px;
+    padding-bottom: 250px;
+    background-image: url("https://images.pexels.com/photos/1478524/pexels-photo-1478524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
