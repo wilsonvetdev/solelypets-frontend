@@ -30,7 +30,7 @@ class ShelterSettings extends React.Component {
             body: JSON.stringify({
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
-                email: this.state.last_name,
+                email: this.state.email,
                 address: this.state.address,
                 city: this.state.city,
                 state: this.state.state 

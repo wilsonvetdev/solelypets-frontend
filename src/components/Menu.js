@@ -24,7 +24,7 @@ class MenuItem extends Component {
         return (
         <div>
             <Menu pointing secondary>
-            {this.props.shelterInfo.role ? 
+            {this.props.shelterInfo.token || this.props.userInfo.token ? 
                 <Menu.Item
                     name='home'
                     active={activeItem === 'home'}
@@ -39,6 +39,7 @@ class MenuItem extends Component {
                 </Menu.Item>
                 : null
             }
+
             <Menu.Item
                 name='shelters'
                 active={activeItem === 'shelters'}

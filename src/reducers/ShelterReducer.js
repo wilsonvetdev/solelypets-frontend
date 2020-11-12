@@ -96,8 +96,12 @@ const shelterReducer = (state = initialState, action) => {
         case 'LOGOUT':
             return initialState
         case 'UPDATE_SHELTER_INFO':
-            debugger
-            return initialState
+            return {
+                ...state,
+                role: action.payload.role,
+                token: action.payload.token,
+                ...action.payload.user
+            }
         default:
             return state
     }
