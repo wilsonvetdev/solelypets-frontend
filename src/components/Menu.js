@@ -24,18 +24,21 @@ class MenuItem extends Component {
         return (
         <div>
             <Menu pointing secondary>
-            <Menu.Item
-                name='home'
-                active={activeItem === 'home'}
-                onClick={this.handleItemClick}
-                as='div'
-            >
             {this.props.shelterInfo.role ? 
-                <Link to='/shelter_home'>Home Page</Link>
-                :
-                <Link to='/user_home'>Home Page</Link>
+                <Menu.Item
+                    name='home'
+                    active={activeItem === 'home'}
+                    onClick={this.handleItemClick}
+                    as='div'
+                    >
+                    {this.props.shelterInfo.role ? 
+                        <Link to='/shelter_home'>Home Page</Link>
+                        :
+                        <Link to='/user_home'>Home Page</Link>
+                    }
+                </Menu.Item>
+                : null
             }
-            </Menu.Item>
             <Menu.Item
                 name='shelters'
                 active={activeItem === 'shelters'}

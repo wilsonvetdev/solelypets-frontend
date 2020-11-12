@@ -95,6 +95,9 @@ const shelterReducer = (state = initialState, action) => {
             }
         case 'LOGOUT':
             return initialState
+        case 'UPDATE_SHELTER_INFO':
+            debugger
+            return initialState
         default:
             return state
     }

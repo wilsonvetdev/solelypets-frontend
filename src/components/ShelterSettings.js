@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { updateShelterInfo } from '../actions/shelters'
 import { Header, Segment, Form, Divider, Button } from 'semantic-ui-react'
 
 class ShelterSettings extends React.Component {
@@ -36,12 +38,11 @@ class ShelterSettings extends React.Component {
         })
         .then(response => response.json())
         .then((updatedObj) => {
-            console.log(updatedObj)
+            this.props.updateShelterInfo(updatedObj)
         })
     }
 
     render(){
-        console.log(this.props.shelterInfo.token)
         return(
             <Segment>
                 <Header size='large' color='teal'>Settings</Header>
@@ -97,4 +98,10 @@ class ShelterSettings extends React.Component {
     }
 }
 
-export default ShelterSettings
+const mapDispatchToProps = dispatch => {
+    return { 
+        updateShelterInfo: (shelterInfo) => dispatch(updateShelterInfo(shelterInfo))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ShelterSettings)
