@@ -35,11 +35,11 @@ class AnimalShelter extends React.Component{
         .catch(error => {console.log('ERROR:', error)})
     }
     render() {
-        let { name, full_address, email, animals, items  } = this.props.shelter
+        let { name, full_address, email, animals } = this.props.shelter
         let listOfAnimals = animals.map(animal => {
             return <Item.Group key={animal.id}>
                         <Item>   
-                            <Item.Image circular size='medium' src={animal.items.length === 0 ? defaultImg : animal.items[animal.items.length-1].image}/>
+                            <Item.Image circular size='medium' src={animal.items.length ? animal.items[animal.items.length-1].image : defaultImg}/>
                             <Item.Content>
                             <Item.Header>{animal.capitalized_name}</Item.Header>
                             <p>Type: {animal.capitalized_species}</p>
@@ -52,7 +52,7 @@ class AnimalShelter extends React.Component{
         return(
             <Segment>
                 <Header size='huge' color='teal'> {name}</Header>
-                <Image rounded size='medium' src={items[items.length - 1].image} />
+                <Image rounded size='medium' src={this.props.shelterInfo.image} />
                 <List size='huge'>
                     <List.Item>
                         <List.Icon name='mail' />

@@ -78,7 +78,7 @@ class RegisterForm extends React.Component {
                             type='password'
                             onChange={this.handleChange}
                         />
-                        <Form.Button content='Log In' />          
+                        <Form.Button content='Register' />          
                     </Form>
                 </Grid.Column>
             </Grid>

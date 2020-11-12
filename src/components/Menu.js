@@ -4,6 +4,7 @@ import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logOutUser } from '../actions/users'
 
+
 class MenuItem extends Component {
 
     state = { 
@@ -43,6 +44,18 @@ class MenuItem extends Component {
             >
             <Link to='/animal_shelters'>All Animal Shelters</Link>
             </Menu.Item>
+            { this.props.shelterInfo.role ?
+            <Menu.Item
+                name='settings'
+                active={activeItem === 'settings'}
+                onClick={this.handleItemClick}
+                as='div'
+            >
+            <Link to='/shelter_settings'>Settings</Link>
+            </Menu.Item>
+            :
+            null 
+            }
 
             
             <Menu.Menu position='right'>

@@ -9,7 +9,10 @@ let initialState = {
     animals: [],
     role: '',
     image: '',
-    donations_received: 0
+    donations_received: 0,
+    address: '',
+    city: '',
+    state: ''
 }
 
 const shelterReducer = (state = initialState, action) => {
@@ -27,7 +30,10 @@ const shelterReducer = (state = initialState, action) => {
                 role: action.payload.role,
                 donations_received: action.payload.user.donations_received,
                 animals: action.payload.user.animals,
-                image: action.payload.user.items[action.payload.user.items.length-1].image
+                image: action.payload.user.items[action.payload.user.items.length-1].image,
+                address: action.payload.user.address,
+                city: action.payload.user.city,
+                state: action.payload.user.state
             }
         case 'UPDATE_SHELTER_IMG':
             return {
