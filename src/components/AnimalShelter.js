@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-react'
 import defaultImg from '../images/defaultImg.png'
 import DonationModal from './DonationModal'
+import twobirds from '../images/twobirds.jpg'
 
 class AnimalShelter extends React.Component{
 
@@ -35,7 +36,7 @@ class AnimalShelter extends React.Component{
         .catch(error => {console.log('ERROR:', error)})
     }
     render() {
-        let { name, full_address, email, animals } = this.props.shelter
+        let { name, full_address, email, animals, items } = this.props.shelter
         let listOfAnimals = animals.map(animal => {
             return <Item.Group key={animal.id}>
                         <Item>   
@@ -49,10 +50,18 @@ class AnimalShelter extends React.Component{
                         <Divider />
                     </Item.Group>
         })
+        console.log(this.props.shelter)
         return(
             <Segment>
                 <Header size='huge' color='teal'> {name}</Header>
-                <Image rounded size='medium' src={this.props.shelterInfo.image} />
+                <Image rounded size='medium' 
+                    src={
+                    items 
+                    ? 
+                    items[items.length-1].image 
+                    :
+                    twobirds }  
+                />
                 <List size='huge'>
                     <List.Item>
                         <List.Icon name='mail' />
