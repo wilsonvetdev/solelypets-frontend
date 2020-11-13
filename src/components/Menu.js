@@ -58,8 +58,8 @@ class MenuItem extends Component {
             </Menu.Item>
             { this.props.shelterInfo.role ?
             <Menu.Item
-                name='settings'
-                active={activeItem === 'settings'}
+                name='/shelter_settings'
+                active={activeItem === '/shelter_settings'}
                 onClick={this.handleItemClick}
                 as='div'
             >
