@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { logOutUser } from '../actions/users'
@@ -8,7 +8,7 @@ import { logOutUser } from '../actions/users'
 class MenuItem extends Component {
 
     state = { 
-        activeItem: 'shelters'
+        activeItem: this.props.history.location.pathname
     }
 
     handleItemClick = (e, { name }) => {
@@ -21,28 +21,36 @@ class MenuItem extends Component {
 
     render() {
         const { activeItem } = this.state
+        console.log(this.props.history.location.pathname)
         return (
         <div>
             <Menu pointing secondary>
-            {this.props.shelterInfo.token || this.props.userInfo.token ? 
+            {this.props.shelterInfo.token ? 
                 <Menu.Item
-                    name='home'
-                    active={activeItem === 'home'}
+                    name='/shelter_home'
+                    active={activeItem === '/shelter_home'}
                     onClick={this.handleItemClick}
                     as='div'
                     >
-                    {this.props.shelterInfo.role ? 
-                        <Link to='/shelter_home'>Home Page</Link>
-                        :
-                        <Link to='/user_home'>Home Page</Link>
-                    }
+                    <Link to='/shelter_home'>Home Page</Link>                   
+                </Menu.Item>
+                : null
+            }
+            {this.props.userInfo.token ? 
+                <Menu.Item
+                    name='/user_home'
+                    active={activeItem === '/user_home'}
+                    onClick={this.handleItemClick}
+                    as='div'
+                    >
+                    <Link to='/user_home'>Home Page</Link>                   
                 </Menu.Item>
                 : null
             }
 
             <Menu.Item
-                name='shelters'
-                active={activeItem === 'shelters'}
+                name='/animal_shelters'
+                active={activeItem === '/animal_shelters'}
                 onClick={this.handleItemClick}
                 as='div'
             >
@@ -104,4 +112,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuItem)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MenuItem))
