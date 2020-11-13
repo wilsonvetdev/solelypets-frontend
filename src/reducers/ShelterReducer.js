@@ -9,7 +9,11 @@ let initialState = {
     animals: [],
     role: '',
     image: '',
-    donations_received: 0
+    donations_received: 0,
+    donations_count: 0,
+    address: '',
+    city: '',
+    state: ''
 }
 
 const shelterReducer = (state = initialState, action) => {
@@ -26,8 +30,12 @@ const shelterReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 role: action.payload.role,
                 donations_received: action.payload.user.donations_received,
+                donations_count: action.payload.user.donations_count,
                 animals: action.payload.user.animals,
-                image: action.payload.user.items[action.payload.user.items.length-1].image
+                image: action.payload.user.items[action.payload.user.items.length-1].image,
+                address: action.payload.user.address,
+                city: action.payload.user.city,
+                state: action.payload.user.state
             }
         case 'UPDATE_SHELTER_IMG':
             return {
@@ -89,6 +97,13 @@ const shelterReducer = (state = initialState, action) => {
             }
         case 'LOGOUT':
             return initialState
+        case 'UPDATE_SHELTER_INFO':
+            return {
+                ...state,
+                role: action.payload.role,
+                token: action.payload.token,
+                ...action.payload.user
+            }
         default:
             return state
     }

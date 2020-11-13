@@ -114,6 +114,16 @@ const animalShelterReducer = (state = initialState, action) => {
                 ...state,
                 animalShelters: [...copyOfShelters]
             }
+        case 'UPDATE_SHELTER_INFO':
+            foundShelter = state.animalShelters.find(shelter => shelter.id === action.payload.user.id)
+            foundShelterIndex = state.animalShelters.findIndex(shelter => shelter.id === foundShelter.id)
+            copyOfShelters = state.animalShelters
+            copyOfShelter = { ...foundShelter, ...action.payload.user}
+            copyOfShelters[foundShelterIndex] = copyOfShelter
+            return {
+                ...state,
+                ...copyOfShelters
+            }
         default:
             return state
     }

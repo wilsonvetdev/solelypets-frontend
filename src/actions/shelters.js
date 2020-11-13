@@ -5,6 +5,13 @@ export const setShelterInfo = (shelterInfo) => {
     }
 }
 
+export const updateShelterInfo = (shelterInfo) => {
+    return {
+        type: 'UPDATE_SHELTER_INFO',
+        payload: shelterInfo
+    }
+}
+
 export const addAnimal = (animalInfo) => {
     return {
         type: 'ADD_ANIMAL',

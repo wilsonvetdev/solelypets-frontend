@@ -48,7 +48,7 @@ class ShelterRegisterForm extends React.Component {
             this.props.setShelterInfo(shelterInfo)
             this.props.addShelter(shelterInfo)
             localStorage.token = shelterInfo.token
-            this.props.history.push('/animal_shelters')
+            this.props.history.push('/shelter_home')
         })
     }
 

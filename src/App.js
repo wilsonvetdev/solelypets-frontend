@@ -14,6 +14,7 @@ import UserHome from './components/UserHome'
 import ShelterHome from './components/ShelterHome'
 import Landing from './components/Landing'
 import MenuItem from './components/Menu'
+import ShelterSettings from './components/ShelterSettings'
 
 class App extends React.Component {
 
@@ -54,6 +55,10 @@ class App extends React.Component {
       }
   }
 
+  shelterSettings = () => {
+    return <ShelterSettings shelterInfo={this.props.shelterInfo} />
+  }
+
   handleLogOut = () => {
       return <Redirect to='/' />
   }
@@ -62,7 +67,7 @@ class App extends React.Component {
     return(
       <Container>
         <Container>
-          <Header size='huge'>
+          <Header size='huge' style={{marginTop: '1%'}}>
             <Link style={{color: '#11B5AC'}} to='/'>SolelyPets</Link>
           </Header>
         </Container>
@@ -83,6 +88,7 @@ class App extends React.Component {
           <Route path='/shelter_register' component={ShelterRegisterForm} />
           <Route path='/user_home' component={UserHome} />
           <Route path='/shelter_home' component={ShelterHome} />
+          <Route path='/shelter_settings' render={this.shelterSettings} />
         </Switch>
 
       </Container>

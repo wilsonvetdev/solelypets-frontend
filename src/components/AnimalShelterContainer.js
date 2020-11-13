@@ -16,7 +16,6 @@ function AnimalShelterContainer(props) {
                         :
                         twobirds } 
                     wrapped ui={false} 
-                    
                 />   
 
                 <Card.Content>
