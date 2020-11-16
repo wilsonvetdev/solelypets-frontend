@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# SolelyPets
+The React/Redux app is designed and developed to allow a donor to easily make donations to an animal shelter of their choice. There is also the option for an animal shelter to register as a user to list their animals and track their donations.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# General Info
+SolelyPets is a Flatiron School Web Developement Capstone project to demonstrate working knowledge of drawing an ERD(entity relational database), spinning up a Rails API with all the appropriate configurations(associations, routes, actions, serializers), and heavy focus on React as frontend for interactions between user and browser.
 
-## Available Scripts
+# Tech Stack
+This web app employs the following technologies(not inclusive):
 
-In the project directory, you can run:
+* Ruby [2.6.1]
+* Rails [6.0.3.2]
+* React(Components and Routes)
+* Redux(state management)
+* Cloudinary API - image uploading and hosting services
+* Stripe API - handles the security and data storage of all donations
+* Semantic UI React for styling
+* PostgresQL - Database
+* Bcrypt and JWT for authentication and authorization
+* rack-cors - provides support for Cross-Origin Resource Sharing for Rack compatible web applications(allows the front-end portion of this project to perform fetch requests)
+* active_model_serializers - allows customization and rendering of data in JSON format as responses to requests
 
-### `yarn start`
+# Set-Up
+1. clone this repo to your local environment -- git clone < git repository >
+2. cd(change directory) into the repo
+3. $run 'npm install' into your command line
+3. $run 'npm start' into your command line
+* **NOTE: This requires a few more steps. Please read below.**
+4. visit https://github.com/wilsonvetdev/solelypets-api
+5. clone the repo to your local environment -- git clone < git repository >
+6. $ bundle install - installs gems and dependencies
+7. $ rails db:create - creates the database for the first time, or try $ rails db:reset
+8. $ rails db:migrate - creates the tables for the database
+9. $ rails db:seed - seed the data necessary
+10. rails s to start the server
+11. With the server running as a result from Step 9, the application should be working in the browser now.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# What's Next?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Database schema will need to be updated with more tables to add more features. Frontend styling and accessibility will also be greatly improved, and will be revisited in the near future. I will be taking in recommendations and tracking the features in the Nice-To-Have section below.
 
-### `yarn test`
+# Nice to have features(not final):
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Adding prompts and validations
+* Allowing a user(donor/shelter) to delete their account
+* Allowing a user(donor) to to edit their account info 
+* A feed in a shelter page to enable commenting feature to improve engagement
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Known Issues so far:
+* No guard clauses to prevent app from breaking( ex. when a donor tries to sign in as a shelter or vice versa )
