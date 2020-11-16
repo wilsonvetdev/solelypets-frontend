@@ -60,7 +60,10 @@ Database schema will need to be updated with more tables to add more features. F
 ![user home](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/userHome.png)
 
 ### Shelter Home
-![shelter home](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/animalList.png)
+![shelter home](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/shelterHome.png)
+
+### Animal List
+![animal list](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/animalList.png)
 
 ### Shelters
 ![shelters](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/shelters.png)
