@@ -47,3 +47,7 @@ Database schema will need to be updated with more tables to add more features. F
 
 # Known Issues so far:
 * No guard clauses to prevent app from breaking( ex. when a donor tries to sign in as a shelter or vice versa )
+
+# Sample Images: 
+
+![landing page](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/landing.png)
