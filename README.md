@@ -50,4 +50,17 @@ Database schema will need to be updated with more tables to add more features. F
 
 # Sample Images: 
 
+### Landing Page
 ![landing page](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/landing.png)
+
+### Loging Page
+![loging page](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/login.png)
+
+### User Home
+![user home](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/userHome.png)
+
+### Shelter Home
+![shelter home](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/animalList.png)
+
+### Shelters
+![shelters](https://github.com/wilsonvetdev/solelypets-frontend/blob/main/shelters.png)
