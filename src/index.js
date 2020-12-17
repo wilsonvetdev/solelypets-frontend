@@ -10,6 +10,14 @@ import { BrowserRouter } from 'react-router-dom'
 import animalShelterReducer from './reducers/AnimalShelterReducer'
 import shelterReducer from './reducers/ShelterReducer'
 import userReducer from './reducers/UserReducer'
+import { datadogLogs } from '@datadog/browser-logs'
+
+datadogLogs.init({
+  clientToken: 'pube4206ee93fa62117a3bdd30243cc49bc',
+  site: 'datadoghq.com',
+  forwardErrorsToLogs: true,
+  sampleRate: 100,
+})
 
 let reducerPojo = {
   animalSheltersInfo: animalShelterReducer,

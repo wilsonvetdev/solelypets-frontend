@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Modal, Form } from 'semantic-ui-react'
+import { datadogLogs } from '@datadog/browser-logs'
 
 class DonationModal extends React.Component{
 
@@ -10,6 +11,7 @@ class DonationModal extends React.Component{
 
     toggleOpen = () => {
         this.setState({open: !this.state.open})
+        datadogLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
     }
 
     handleChange = (event) => {

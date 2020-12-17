@@ -50,7 +50,7 @@ class AnimalShelter extends React.Component{
                         <Divider />
                     </Item.Group>
         })
-        console.log(this.props.shelter)
+
         return(
             <Segment>
                 <Header size='huge' color='teal'> {name}</Header>
