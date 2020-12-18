@@ -11,7 +11,9 @@ class DonationModal extends React.Component{
 
     toggleOpen = () => {
         this.setState({open: !this.state.open})
-        datadogLogs.logger.info('Button clicked', { name: 'buttonName', id: 123 })
+        if(this.state.open) {
+            datadogLogs.logger.info('donation button clicked', { name: 'donateButton' })
+        }
     }
 
     handleChange = (event) => {

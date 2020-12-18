@@ -4,6 +4,7 @@ import { Header, Divider, Image, Segment, Item, Icon, List } from 'semantic-ui-r
 import defaultImg from '../images/defaultImg.png'
 import DonationModal from './DonationModal'
 import twobirds from '../images/twobirds.jpg'
+import { datadogLogs } from '@datadog/browser-logs'
 
 class AnimalShelter extends React.Component{
 
@@ -23,6 +24,7 @@ class AnimalShelter extends React.Component{
         .then(response => response.json())
         .then(session => {
             console.log(session, stripe)
+            datadogLogs.logger.info('checkout session created', { name: 'createCheckOut' })
             return stripe.redirectToCheckout({ sessionId: session.id})
         })
         .then(result => {
@@ -30,11 +32,16 @@ class AnimalShelter extends React.Component{
             // error, you should display the localized error message to your
             // customer using `error.message`.
             if(result.error) {
+                datadogLogs.logger.error('redirectToCheckout failed', { message: 'result.error.message' })
                 alert(result.error.message)
             }
         })
-        .catch(error => {console.log('ERROR:', error)})
+        .catch(error => {
+            datadogLogs.logger.error('fetch error during donation checkout')
+            console.log('ERROR:', error)
+        })
     }
+    
     render() {
         let { name, full_address, email, animals, items } = this.props.shelter
         let listOfAnimals = animals.map(animal => {
@@ -50,6 +57,8 @@ class AnimalShelter extends React.Component{
                         <Divider />
                     </Item.Group>
         })
+
+        datadogLogs.logger.info('animal count', { animalCount: listOfAnimals.length })
 
         return(
             <Segment>
